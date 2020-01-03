@@ -5,7 +5,7 @@
           <li class="breadcrumb-item"><a href="/">Übersicht</a></li>
           <li class="breadcrumb-item"><a :href="card.card.date.year">{{card.card.date.year}}</a></li>
           <li class="breadcrumb-item"><a :href="card.card.date.month">Juni</a></li>
-          <li class="breadcrumb-item"><a>Aktuelle Karte: {{card.card.date.day}}.{{card.card.date.month}}.{{card.card.date.year}}</a></li>
+          <li class="breadcrumb-item"><a>Aktuelle Karte: {{formatTwoDigits(card.card.date.day)}}.{{formatTwoDigits(card.card.date.month)}}.{{card.card.date.year}}</a></li>
       </ul>
       <a :href="card.navigation.next">Nächste Karte <font-awesome-icon icon="long-arrow-alt-right" /> </a>
   </nav>
@@ -13,7 +13,13 @@
 
 <script>
 export default {
-    props: ["card"]
+    props: ["card"],
+    methods: {
+        formatTwoDigits(val) {
+            if(val < 10) return "0" + val;
+            return val;
+        }
+    }
 }
 </script>
 

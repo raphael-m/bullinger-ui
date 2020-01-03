@@ -157,7 +157,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card-viewport { overflow:hidden; border:1px solid #000; background:#DDD;  }
+  .card-viewport { overflow:hidden; border:1px solid #000; background:#DDD; }
   .card-image { cursor:move; position:relative; width:100%; top:0; left: 0; }
 
   .animate-position { transition: all 0.2s; }
