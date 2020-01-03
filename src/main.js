@@ -11,10 +11,6 @@ library.add(faLongArrowAltLeft)
 library.add(faLongArrowAltRight)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-// Import v-dragged
-import VDragged from 'v-dragged'
-Vue.use(VDragged) 
-
 new Vue({
   render: h => h(App),
 }).$mount('#app')

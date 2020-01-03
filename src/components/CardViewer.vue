@@ -4,14 +4,20 @@
     <button @click="zoomIn()">+</button>
     <button @click="zoomOut()">-</button>
     <button @click="reset">Reset</button>
-    <div v-dragged.prevent="onDragged" class="card-viewport" :style="{ height: height + 'px' }" @wheel.prevent="scroll">
+    <div class="card-viewport" :style="{ height: height + 'px' }" @wheel.prevent="scroll">
         <img
           class="card-image"
           :class="{ 'animate-position': !isDraggingConfirmed }" 
           :style="transformation"
           :src="card.card_path"
           ref="img"
-          v-dragged.prevent="onDragged"
+          draggable="false"
+          @mousedown="dragStart"
+          @touchstart.prevent="dragStart"
+          @mousemove="drag"
+          @touchmove="drag"
+          @mouseup="dragEnd"
+          @touchend="dragEnd"
           @load="onLoad"
           @dblclick="zoomIn"
           @contextmenu.prevent="zoomOut"
@@ -40,6 +46,10 @@ export default {
       height: null,
       isDragging: false,
       isDraggingConfirmed: false,
+      dragPos: {
+        x: 0,
+        y: 0
+      },
       pos: {
         x: 0,
         y: 0
@@ -63,24 +73,41 @@ export default {
       this.width = this.$refs.img.width;
       this.height = this.$refs.img.height;
     },
-    onDragged({ deltaX, deltaY, first, last }) {
-      if (first) {
-        this.isDragging = true;
-        return;
+    getPos(e) {
+      return {
+        x: e.touches ? e.touches[0].screenX : e.screenX,
+        y: e.touches ? e.touches[0].screenY : e.screenY
       }
-      if (last) {
-        this.isDragging = false;
-        this.isDraggingConfirmed = false;
+    },
+    dragStart(e) {
+      console.log('started',e)
+      this.isDragging = true;
+      this.dragPos = this.getPos(e);
+    },
+    dragEnd() {
+      this.isDragging = false;
+      this.isDraggingConfirmed = false;
+    },
+    drag(e) {
+      if(!this.isDragging)
         return;
-      }
       this.isDraggingConfirmed = true;
-      this.pos.x += deltaX;
-      this.pos.y += deltaY;
+
+      let pos = this.getPos(e);
+
+      let delta = {
+        x: pos.x - this.dragPos.x,
+        y: pos.y - this.dragPos.y
+      }
+
+      this.dragPos.x = pos.x;
+      this.dragPos.y = pos.y;
+      this.pos.x += delta.x;
+      this.pos.y += delta.y;
       this.fixBounds();
     },
     zoomIn(e) {
       if(e) {
-        console.log(e)
         this.pos.x += (this.width / 2 - e.offsetX) * this.zoom;
         this.pos.y += (this.height / 2 - e.offsetY) * this.zoom;
       } else {
