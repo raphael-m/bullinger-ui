@@ -4,7 +4,7 @@
     <button @click="zoomIn()">+</button>
     <button @click="zoomOut()">-</button>
     <button @click="reset">Reset</button>
-    <div class="card-viewport" :style="{ height: height + 'px' }" @wheel.prevent="scroll">
+    <div class="card-viewport" @wheel.prevent="scroll">
       <div
         :class="{ 'animate-position': !isDraggingConfirmed }" 
         :style="transformation"
