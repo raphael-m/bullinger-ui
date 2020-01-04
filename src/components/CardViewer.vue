@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- {{zoom}}, {{pos}}<br> -->
     <button @click="zoomIn()">+</button>
     <button @click="zoomOut()">-</button>
     <button @click="reset">Reset</button>
@@ -18,7 +17,7 @@
           @touchmove="drag"
           @mouseup="dragEnd"
           @touchend="dragEnd"
-          @load="onLoad"
+          @load="setWidthHeight"
           @dblclick="zoomIn"
           @contextmenu.prevent="zoomOut"
           :src="card.card_path"
@@ -42,72 +41,16 @@
 </template>
 
 <script>
+import highlightings from '../assets/highlights'
 const settings = {
   zoom: {
     min: 0.5,
     max: 20
   },
   maxBorderOverlap: 2,
-  zoomFactor: 2
+  zoomFactor: 2,
+  autoFocusPadding: 5
 }
-
-const highlightings = {
-  // ToDo: List all possible highlightings with its coordinates
-  date: {
-    x: 0,
-    y: 0,
-    w: 31.44246353,
-    h: 23.30848624
-  },
-  sender: {
-    x: 31.42220421,
-    y: 0,
-    w: 35.2917342,
-    h: 23.30848624
-  },
-  receiver: {
-    x: 66.69367909,
-    y: 0,
-    w: 33.30632091,
-    h: 23.30848624
-  },
-  autograph: {
-    x: 0,
-    y: 23.27981651,
-    w: 31.44246353,
-    h: 28.95642202
-  },
-  copy: {
-    x: 31.42220421,
-    y: 23.27981651,
-    w: 35.2917342,
-    h: 28.95642202
-  },
-  language: {
-    x: 0,
-    y: 52.20756881,
-    w: 31.44246353,
-    h: 9.690366972
-  },
-  printed: {
-    x: 0,
-    y: 61.86926606,
-    w: 31.44246353,
-    h: 38.13073394
-  },
-  literature: {
-    x: 31.42220421,
-    y: 52.20756881,
-    w: 68.57779579,
-    h: 25.37270642
-  },
-  first_sentence: {
-    x: 31.42220421,
-    y: 77.5516055,
-    w: 68.57779579,
-    h: 22.4483945
-  }
-};
 
 export default {
   name: 'Card',
@@ -145,7 +88,7 @@ export default {
     }
   },
   methods: {
-    onLoad() {
+    setWidthHeight() {
       this.width = this.$refs.img.width;
       this.height = this.$refs.img.height;
     },
@@ -230,9 +173,9 @@ export default {
       this.fixBounds();
     },
     moveTo({x, y, w}) {
-      x = x - 5;
-      y = y - 5;
-      w = w + 10;
+      x = x - settings.autoFocusPadding;
+      y = y - settings.autoFocusPadding;
+      w = w + settings.autoFocusPadding*2;
       
       this.zoom = 100 / w;
       console.log(this.zoom, this.width, this.height)
@@ -240,6 +183,12 @@ export default {
       this.pos.y = (-this.height * this.zoom) * y / 100 + (this.height / 2 * this.zoom) - (this.height / 2);
       this.fixBounds();
     }
+  },
+  created () {
+    window.addEventListener('resize', this.setWidthHeight);
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.setWidthHeight);
   }
 }
 </script>

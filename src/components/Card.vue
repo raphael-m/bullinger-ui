@@ -8,8 +8,14 @@
       <div class="bu-card-outer">
         <div class="bu-card-original">
           <h3>Originale Karteikarte</h3>
-          <p>Zum Vergrössern verwenden Sie die Steuerelemente oder das Mausrad. <label><input type="checkbox" v-model="autofocus" /> Automatisch fokussieren</label></p>
-          <card-viewer :card="card" :focus="focus" :autofocus="autofocus" :highlight="highlight" />
+          Zum Vergrössern verwenden Sie die Steuerelemente oder das Mausrad.
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" v-model="autofocus" id="autofocus" />
+            <label for="autofocus">Automatisch fokussieren</label>
+          </div>
+          <div style="padding-top:20px" ref="card_original">
+            <card-viewer :style="{ transform: `translate(0, ${card_original_top}px)` }" :card="card" :focus="focus" :autofocus="autofocus" :highlight="highlight" />
+          </div>
         </div>
         <div class="bu-card-digital">
           <h3>Digitale Karteikarte <span class="badge badge-secondary">0 Rezensionen</span> <span class="badge badge-danger">offen</span></h3>
@@ -34,7 +40,8 @@ export default {
       card: null,
       focus: null,
       highlight: null,
-      autofocus: true
+      autofocus: true,
+      card_original_top: 0
     }
   },
   components: {
@@ -48,7 +55,18 @@ export default {
   methods: {
     async load() {
       this.card = await CardService.getCard(6);
+    },
+    handleScroll() {
+      if(!this.$refs.card_original) return;
+      this.card_original_top = Math.max(0, -this.$refs.card_original.getBoundingClientRect().top);
+      console.log(this.card_original_top)
     }
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
