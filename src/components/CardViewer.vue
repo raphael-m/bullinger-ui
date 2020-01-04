@@ -1,8 +1,11 @@
 <template>
   <div>
-    <button @click="zoomIn()">+</button>
-    <button @click="zoomOut()">-</button>
-    <button @click="reset">Reset</button>
+    {{zoom}}
+    <div class="toolbar">
+      <a @click="zoomIn()" @mousedown.prevent><font-awesome-icon icon="plus-square" /></a>
+      <a @click="zoomOut()" @mousedown.prevent><font-awesome-icon icon="minus-square" /></a>
+      <a @click="reset" @mousedown.prevent><font-awesome-icon icon="expand" /></a>
+    </div>
     <div class="card-viewport" @wheel.prevent="scroll">
       <div
         :class="{ 'animate-position': !isDraggingConfirmed }" 
@@ -48,8 +51,9 @@ const settings = {
     max: 20
   },
   maxBorderOverlap: 2,
-  zoomFactor: 2,
-  autoFocusPadding: 5
+  zoomFactor: 1.5,
+  autoFocusPadding: 5,
+  scrollFactor: 500
 }
 
 export default {
@@ -84,7 +88,7 @@ export default {
   watch: {
     focus(newFocus) {
       if(this.autofocus && newFocus && highlightings[newFocus])
-        this.moveTo(highlightings[newFocus])
+        this.moveToBounds(highlightings[newFocus])
     }
   },
   methods: {
@@ -123,19 +127,34 @@ export default {
       this.dragPos.y = pos.y;
       this.pos.x += delta.x;
       this.pos.y += delta.y;
-
+      console.log(this.pos.x, this.pos.y)
       this.fixBounds();
     },
     zoomIn(e) {
+      // Limit zoom
+      let zoomFactor = settings.zoomFactor;
+      if(this.zoom * settings.zoomFactor > settings.zoom.max)
+        zoomFactor = settings.zoom.max / this.zoom;
+
+      console.log("Zooming with factor ", zoomFactor)
+      console.log("Offset", e.offsetX, e.offsetY)
       if(e) {
-        this.pos.x += (this.width / 2 - e.offsetX) * this.zoom;
-        this.pos.y += (this.height / 2 - e.offsetY) * this.zoom;
+        // this.pos.x += (this.width / 2 - e.offsetX) * this.zoom;
+        // this.pos.y += (this.height / 2 - e.offsetY) * this.zoom;
+        console.log(e.offsetX)
+        // this.pos.x = this.pos.x * zoomFactor + (this.width / 2 - e.offsetX) * (this.zoom * zoomFactor);
+        // this.pos.y = this.pos.y * zoomFactor + (this.height / 2 - e.offsetY) * (this.zoom * zoomFactor);
+
+        this.pos.x = this.pos.x * zoomFactor - (this.width / 2 - e.offsetX) * this.zoom + (this.width / 2 - e.offsetX) * (this.zoom * zoomFactor);
+        this.pos.y = this.pos.y * zoomFactor - (this.height / 2 - e.offsetY) * this.zoom + (this.height / 2 - e.offsetY) * (this.zoom * zoomFactor);
+
+        this.pos.x = this.pos.x * zoomFactor - (this.pos.x - e.offsetX)
       } else {
-        this.pos.x *= settings.zoomFactor;
-        this.pos.y *= settings.zoomFactor;
+        this.pos.x *= zoomFactor;
+        this.pos.y *= zoomFactor;
       }
 
-      this.zoom *= settings.zoomFactor;
+      this.zoom *= zoomFactor;
       this.fixBounds();
     },
     zoomOut() {
@@ -144,17 +163,6 @@ export default {
       this.zoom /= settings.zoomFactor;
       this.fixBounds();
     },
-    // zoom(factor, anchor = {x, y}) {
-    //   if(!anchor) {
-    //     anchor =  {
-    //       x: 
-    //     }
-    //   }
-    //   this.pos.x /= settings.zoomFactor;
-    //   this.pos.y /= settings.zoomFactor;
-    //   this.zoom /= settings.zoomFactor;
-    //   this.fixBounds();
-    // },
     reset() {
       this.zoom = 1;
       this.pos.x = 0;
@@ -169,16 +177,16 @@ export default {
       this.pos.y = Math.min(this.pos.y, this.height / settings.maxBorderOverlap * this.zoom);
     },
     scroll(e) {
-      this.zoom += (-e.deltaY / 500);
+      this.zoom += (-e.deltaY / settings.scrollFactor);
       this.fixBounds();
     },
-    moveTo({x, y, w}) {
+    moveToBounds({x, y, w, h}) {
       x = x - settings.autoFocusPadding;
       y = y - settings.autoFocusPadding;
       w = w + settings.autoFocusPadding*2;
+      h = h + settings.autoFocusPadding*2;
       
-      this.zoom = 100 / w;
-      console.log(this.zoom, this.width, this.height)
+      this.zoom = Math.min(100 / w, 100 / h);
       this.pos.x = (-this.width * this.zoom) * x / 100 + (this.width / 2 * this.zoom) - (this.width / 2);
       this.pos.y = (-this.height * this.zoom) * y / 100 + (this.height / 2 * this.zoom) - (this.height / 2);
       this.fixBounds();
@@ -200,6 +208,8 @@ export default {
 
   .animate-position { transition: all 0.2s; }
   .highlight { background:rgba(122,122,122,0.1); position:absolute; }
+  .toolbar { position:absolute; top:-40px; right:0px; border-radius:10px; background:#FFF; }
+  .toolbar a { cursor: pointer; display:inline-block; font-size:30px; line-height:0; padding: 4px; color: #26244B; }
 
   /* Fade transition */
   .fade-enter-active, .fade-leave-active {
