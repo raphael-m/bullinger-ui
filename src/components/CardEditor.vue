@@ -2,7 +2,7 @@
   <div class="bu-card-editor">
     <form>
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4" v-viewer="'date'">
           <h4>Datum</h4>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
@@ -35,7 +35,7 @@
           <label for="date_remarks">Bemerkung (Datum)</label>
           <input id="date_remarks" v-model="c.date.remarks" type="text" class="form-control" />
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" v-viewer="'sender'">
           <div class="row">
             <div class="col-sm-12">
               <h4>Absender</h4>
@@ -66,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" v-viewer="'receiver'">
           <div class="row">
             <div class="col-sm-12">
               <h4>Empfänger</h4>
@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4" v-viewer="'autograph'">
           <h4>Autograph</h4>
           <div class="form-group">
             <label for="autograph_location">Standort</label>
@@ -114,7 +114,7 @@
             <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" />
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" v-viewer="'copy'">
           <h4>Kopie</h4>
           <div class="form-group">
             <label for="copy_location">Standort</label>
@@ -132,20 +132,20 @@
       </div>
       <h4>Inhalt</h4>
       <div class="row">
-        <div class="col-sm-4 form-group">
+        <div class="col-sm-4 form-group" v-viewer="'language'">
           <label for="language">Sprache</label>
           <input id="language" v-model="c.language" type="text" class="form-control" />
         </div>
-        <div class="col-sm-4 form-group">
+        <div class="col-sm-4 form-group" v-viewer="'printed'">
           <label for="printed">Gedruckt</label>
           <input id="printed" v-model="c.printed" type="text" class="form-control" />
         </div>
-        <div class="col-sm-4 form-group">
+        <div class="col-sm-4 form-group" v-viewer="'literature'">
           <label for="literature">Literatur</label>
           <input id="literature" v-model="c.literature" type="text" class="form-control" />
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" v-viewer="'first_sentence'">
         <label for="first_sentence">Erster Satz</label>
         <textarea id="first_sentence" spellcheck="false" v-model="c.first_sentence" class="form-control"></textarea>
       </div>
@@ -190,6 +190,28 @@ export default {
   mounted() {
   },
   methods: {
+  },
+  directives: {
+    viewer: {
+      bind: function(el, bind, vnode) {
+        el.addEventListener('mouseenter', function() {
+          vnode.context.$emit('highlight', bind.value);
+        });
+
+        Array.from(el.querySelectorAll("input,textarea")).forEach((e) => {
+          e.addEventListener('focus', function() {
+            vnode.context.$emit('focus', bind.value);
+          });
+          e.addEventListener('blur', function() {
+            vnode.context.$emit('unfocus', bind.value);
+          });
+        })
+
+        el.addEventListener('mouseleave', function() {
+          vnode.context.$emit('unhighlight', bind.value);
+        });
+      }
+    }
   }
 }
 </script>

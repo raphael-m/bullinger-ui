@@ -8,13 +8,13 @@
       <div class="bu-card-outer">
         <div class="bu-card-original">
           <h3>Originale Karteikarte</h3>
-          <p>Zum Vergrössern verwenden Sie die Steuerelemente oder das Mausrad.</p>
-          <card-viewer :card="card" />
+          <p>Zum Vergrössern verwenden Sie die Steuerelemente oder das Mausrad. <label><input type="checkbox" v-model="autofocus" /> Automatisch fokussieren</label></p>
+          <card-viewer :card="card" :focus="focus" :autofocus="autofocus" :highlight="highlight" />
         </div>
         <div class="bu-card-digital">
           <h3>Digitale Karteikarte <span class="badge badge-secondary">0 Rezensionen</span> <span class="badge badge-danger">offen</span></h3>
           <p>Prüfen Sie die angezeigten Werte mit den Angaben auf der originalen Karteikarte.</p>
-          <card-editor :card="card" />
+          <card-editor :card="card" @focus="focus = highlight = $event" @unfocus="focus = null" @highlight="highlight = $event" @unhighlight="highlight = null" />
         </div>
       </div>
     </div>
@@ -31,7 +31,10 @@ export default {
   name: 'Card',
   data() {
     return {
-      card: null
+      card: null,
+      focus: null,
+      highlight: null,
+      autofocus: true
     }
   },
   components: {
