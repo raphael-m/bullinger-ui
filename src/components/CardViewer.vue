@@ -1,7 +1,7 @@
 <template>
   <div>
-    {{zoom}}
     <div class="toolbar">
+      Zoom: {{(zoom * 100).toFixed() + '%'}}
       <a @click="zoomIn()" @mousedown.prevent><font-awesome-icon icon="plus-square" /></a>
       <a @click="zoomOut()" @mousedown.prevent><font-awesome-icon icon="minus-square" /></a>
       <a @click="reset" @mousedown.prevent><font-awesome-icon icon="expand" /></a>
