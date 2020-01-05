@@ -81,7 +81,7 @@ export default {
   computed: {
     transformation() {
       return {
-        transform: `translate(${this.pos.x}px, ${this.pos.y}px) scale(${this.zoom})`
+        transform: `scale(${this.zoom}) translate(${this.pos.x}px, ${this.pos.y}px)`
       }
     }
   },
@@ -103,7 +103,6 @@ export default {
       }
     },
     dragStart(e) {
-      console.log('started',e)
       this.isDragging = true;
       this.dragPos = this.getPos(e);
     },
@@ -125,41 +124,28 @@ export default {
 
       this.dragPos.x = pos.x;
       this.dragPos.y = pos.y;
-      this.pos.x += delta.x;
-      this.pos.y += delta.y;
-      console.log(this.pos.x, this.pos.y)
+      this.pos.x += delta.x / this.zoom;
+      this.pos.y += delta.y / this.zoom;
+
       this.fixBounds();
     },
-    zoomIn(e) {
+    zoomIn(e, zoomFactor = settings.zoomFactor) {
       // Limit zoom
-      let zoomFactor = settings.zoomFactor;
-      if(this.zoom * settings.zoomFactor > settings.zoom.max)
+      if(this.zoom * zoomFactor > settings.zoom.max)
         zoomFactor = settings.zoom.max / this.zoom;
 
-      console.log("Zooming with factor ", zoomFactor)
-      console.log("Offset", e.offsetX, e.offsetY)
       if(e) {
-        // this.pos.x += (this.width / 2 - e.offsetX) * this.zoom;
-        // this.pos.y += (this.height / 2 - e.offsetY) * this.zoom;
-        console.log(e.offsetX)
-        // this.pos.x = this.pos.x * zoomFactor + (this.width / 2 - e.offsetX) * (this.zoom * zoomFactor);
-        // this.pos.y = this.pos.y * zoomFactor + (this.height / 2 - e.offsetY) * (this.zoom * zoomFactor);
+        let midDiff = (-this.pos.x + this.width/2 - e.offsetX);
+        this.pos.x = this.pos.x + (midDiff/2) / zoomFactor;
 
-        this.pos.x = this.pos.x * zoomFactor - (this.width / 2 - e.offsetX) * this.zoom + (this.width / 2 - e.offsetX) * (this.zoom * zoomFactor);
-        this.pos.y = this.pos.y * zoomFactor - (this.height / 2 - e.offsetY) * this.zoom + (this.height / 2 - e.offsetY) * (this.zoom * zoomFactor);
-
-        this.pos.x = this.pos.x * zoomFactor - (this.pos.x - e.offsetX)
-      } else {
-        this.pos.x *= zoomFactor;
-        this.pos.y *= zoomFactor;
+        let hDiff = (-this.pos.y + this.height/2 - e.offsetY);
+        this.pos.y = this.pos.y + (hDiff/2) / zoomFactor;
       }
 
       this.zoom *= zoomFactor;
       this.fixBounds();
     },
     zoomOut() {
-      this.pos.x /= settings.zoomFactor;
-      this.pos.y /= settings.zoomFactor;
       this.zoom /= settings.zoomFactor;
       this.fixBounds();
     },
@@ -171,10 +157,10 @@ export default {
     fixBounds() {
       this.zoom = Math.max(this.zoom, settings.zoom.min);
       this.zoom = Math.min(this.zoom, settings.zoom.max);
-      this.pos.x = Math.max(this.pos.x, -this.width / settings.maxBorderOverlap * this.zoom);
-      this.pos.x = Math.min(this.pos.x, this.width / settings.maxBorderOverlap * this.zoom);
-      this.pos.y = Math.max(this.pos.y, -this.height / settings.maxBorderOverlap * this.zoom);
-      this.pos.y = Math.min(this.pos.y, this.height / settings.maxBorderOverlap * this.zoom);
+      this.pos.x = Math.max(this.pos.x, -this.width / settings.maxBorderOverlap);
+      this.pos.x = Math.min(this.pos.x, this.width / settings.maxBorderOverlap);
+      this.pos.y = Math.max(this.pos.y, -this.height / settings.maxBorderOverlap);
+      this.pos.y = Math.min(this.pos.y, this.height / settings.maxBorderOverlap);
     },
     scroll(e) {
       this.zoom += (-e.deltaY / settings.scrollFactor);
@@ -187,8 +173,8 @@ export default {
       h = h + settings.autoFocusPadding*2;
       
       this.zoom = Math.min(100 / w, 100 / h);
-      this.pos.x = (-this.width * this.zoom) * x / 100 + (this.width / 2 * this.zoom) - (this.width / 2);
-      this.pos.y = (-this.height * this.zoom) * y / 100 + (this.height / 2 * this.zoom) - (this.height / 2);
+      this.pos.x = (-this.width) * x / 100 + (this.width / 2) - (this.width / 2 / this.zoom);
+      this.pos.y = (-this.height) * y / 100 + (this.height / 2) - (this.height / 2 / this.zoom);
       this.fixBounds();
     }
   },
