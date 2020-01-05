@@ -198,7 +198,7 @@ export default {
           vnode.context.$emit('highlight', bind.value);
         });
 
-        Array.from(el.querySelectorAll("input,textarea")).forEach((e) => {
+        Array.from(el.querySelectorAll("input,textarea,select")).forEach((e) => {
           e.addEventListener('focus', function() {
             vnode.context.$emit('focus', bind.value);
           });
