@@ -63,7 +63,6 @@ export default {
     handleScroll() {
       if(!this.$refs.card_original) return;
       this.card_original_top = Math.max(0, -this.$refs.card_original.getBoundingClientRect().top);
-      console.log(this.card_original_top)
     }
   },
   created () {
