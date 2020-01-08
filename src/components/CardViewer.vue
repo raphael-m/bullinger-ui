@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="toolbar">
-      Zoom: {{(zoom * 100).toFixed() + '%'}}
-      <a @click="zoomIn()" @mousedown.prevent><font-awesome-icon icon="plus-square" /></a>
-      <a @click="zoomOut()" @mousedown.prevent><font-awesome-icon icon="minus-square" /></a>
+      <div class="autofocus form-check form-check-inline">
+        <input type="checkbox" class="form-check-input" v-model="autofocus" id="autofocus" />
+        <label class="form-check-label" for="autofocus">Automatisch fokussieren</label>
+      </div>
+      <label class="zoom-info">Zoom: {{(zoom * 100).toFixed() + '%'}}</label>
+      <a @click="zoomIn()" @mousedown.prevent><font-awesome-icon icon="plus" /></a>
+      <a @click="zoomOut()" @mousedown.prevent><font-awesome-icon icon="minus" /></a>
       <a @click="reset" @mousedown.prevent><font-awesome-icon icon="expand" /></a>
     </div>
     <div class="card-viewport" @wheel.prevent="scroll">
@@ -58,10 +62,11 @@ const settings = {
 
 export default {
   name: 'Card',
-  props: [ 'card', 'focus', 'autofocus', 'highlight' ],
+  props: [ 'card', 'focus', 'highlight' ],
   data() {
     return {
       loaded: false,
+      autofocus: true,
       width: null,
       height: null,
       isDragging: false,
@@ -188,15 +193,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card-viewport { overflow:hidden; border:1px solid #000; background:#DDD; position:relative; }
+  .card-viewport { overflow:hidden; border:1px solid #000; background:#DDD; position:relative; margin-top:30px; }
   .card-wrapper { position:relative; }
   .card-image { cursor:move; width:100%; top:0; left:0; position:relative; }
 
   .animate-position { transition: all 0.2s; }
   .highlight { background:rgba(122,122,122,0.1); position:absolute; }
-  .toolbar { position:absolute; top:-40px; right:0px; border-radius:10px; background:#FFF; }
-  .toolbar a { cursor: pointer; display:inline-block; font-size:30px; line-height:0; padding: 4px; color: #26244B; }
-
+  .toolbar { position:absolute; top:-40px; right:0px; border-radius:6px 6px 0 0; background:#EFEFEF; padding:1px 10px; }
+  .toolbar a { cursor: pointer; display:inline-block; width:40px; padding-left:5px; text-align:center; font-size:22px; padding: 4px; border-left:1px solid #DADADA; color:#BFBFBF; }
+  .toolbar a:first-of-type { margin-left: 12px; }
+  .toolbar a:last-of-type { padding-right:0px; }
+  .zoom-info { position:relative; top:-1px; }
   /* Fade transition */
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;

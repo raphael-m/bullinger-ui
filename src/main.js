@@ -5,12 +5,12 @@ Vue.config.productionTip = false
 
 // Import fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faLongArrowAltLeft, faLongArrowAltRight, faPlusSquare, faMinusSquare, faExpand } from '@fortawesome/free-solid-svg-icons'
+import { faLongArrowAltLeft, faLongArrowAltRight, faPlus, faMinus, faExpand } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faLongArrowAltLeft)
 library.add(faLongArrowAltRight)
-library.add(faPlusSquare)
-library.add(faMinusSquare)
+library.add(faPlus)
+library.add(faMinus)
 library.add(faExpand)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

@@ -155,10 +155,11 @@
       </div>
       <div class="form-group">
         <label for="status">Status</label>
-        <select id="status" class="form-control" v-model="c.state">
+        <select id="status" class="form-control" v-model="card.state">
+          <option value="open">Offen</option>
           <option value="undefined">Unklar</option>
           <option value="invalid">Ungültig</option>
-          <option value="finished">Abgeschlossen</option>
+          <option value="done">Abgeschlossen</option>
         </select>
       </div>
       <div class="form-group text-right">

@@ -9,16 +9,21 @@
         <div class="bu-card-original">
           <h3>Originale Karteikarte</h3>
           Zum Vergrössern verwenden Sie die Steuerelemente oder das Mausrad.
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" v-model="autofocus" id="autofocus" />
-            <label for="autofocus">Automatisch fokussieren</label>
-          </div>
           <div style="padding-top:20px" ref="card_original">
-            <card-viewer :style="{ transform: `translate(0, ${card_original_top}px)` }" :card="card" :focus="focus" :autofocus="autofocus" :highlight="highlight" />
+            <card-viewer :style="{ transform: `translate(0, ${card_original_top}px)` }" :card="card" :focus="focus" :highlight="highlight" />
           </div>
         </div>
         <div class="bu-card-digital">
-          <h3>Digitale Karteikarte <span class="badge badge-secondary">0 Rezensionen</span> <span class="badge badge-danger">offen</span></h3>
+          <h3>
+            Digitale Karteikarte
+            <span class="badge-wrapper">
+              <span class="badge badge-secondary">{{card.reviews}} Rezensionen</span>
+              <span v-if="card.state == 'open'" class="badge badge-danger">offen</span>
+              <span v-if="card.state == 'undefined'" class="badge badge-danger">unklar</span>
+              <span v-if="card.state == 'done'" class="badge badge-success">abgeschlossen</span>
+              <span v-if="card.state == 'invalid'" class="badge badge-danger">ungültig</span>
+            </span>
+          </h3>
           <p>Prüfen Sie die angezeigten Werte mit den Angaben auf der originalen Karteikarte.</p>
           <card-editor :card="card" @focus="focus = highlight = $event" @unfocus="focus = null" @highlight="highlight = $event" @unhighlight="highlight = null" />
         </div>
@@ -40,7 +45,6 @@ export default {
       card: null,
       focus: null,
       highlight: null,
-      autofocus: true,
       card_original_top: 0
     }
   },
@@ -72,7 +76,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  h3 { font-size:20px; color: #000; }
+  .bu-card-wrapper, p { color: #707070; }
   .bu-card-outer { padding: 20px; display:flex; }
   .bu-card-original { width:40%; padding-right:40px; }
   .bu-card-digital { width:60%; }
+
+  .badge-wrapper { margin-left: 10px; position:relative; top:-2px; }
+  .badge { border-radius:20px; color: #FFF; font-weight:normal; padding:7px 10px; margin-right:6px; }
+  .badge-secondary { background: #8E8B8B; }
+  .badge-danger { background:#FF7676; }
 </style>

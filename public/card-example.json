@@ -1,6 +1,6 @@
 {
     "id": 6,
-    "state": "offen",
+    "state": "open",
     "reviews": 0,
     "card_path": "/card-example.png",
     "card": {
