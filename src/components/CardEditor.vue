@@ -153,17 +153,22 @@
         <label for="remarks">Anmerkungen / Notiz zu dieser Karteikarte</label>
         <textarea id="remarks" spellcheck="false" v-model="c.remarks" class="form-control"></textarea>
       </div>
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select id="status" class="form-control" v-model="card.state">
-          <option value="open">Offen</option>
-          <option value="undefined">Unklar</option>
-          <option value="invalid">Ungültig</option>
-          <option value="done">Abgeschlossen</option>
-        </select>
-      </div>
-      <div class="form-group text-right">
-        <button type="button" class="btn btn-primary">Speichern und weiter</button>
+      <div class="card-actions" style="">
+        <div class="form-group form-inline">
+          <label for="status">Status</label>
+          <select id="status" class="form-control" v-model="card.state">
+            <option value="open">Offen</option>
+            <option value="undefined">Unklar</option>
+            <option value="invalid">Ungültig</option>
+            <option value="done">Abgeschlossen</option>
+          </select>
+        </div>
+        <div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary btn-save">Speichern</button>
+            <button type="button" class="btn btn-primary btn-save-go">Speichern und weiter</button>
+          </div>
+        </div>
       </div>
     </form>
   </div>
@@ -228,4 +233,12 @@ export default {
   
   label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
   h4 { color:#707070; font-size:20px; }
+
+  $btn-color: #009688;
+  .btn-save-go { background:$btn-color; border-color:darken($btn-color, 5%) }
+  .btn-save-go:hover, .btn-save-go:active, .btn-save-go:focus { background:darken($btn-color, 5%); border-color:darken($btn-color, 10%) }
+
+  .card-actions { display:flex; justify-content: flex-end; }
+  .card-actions > .form-group { margin-right: 15px; }
+  .card-actions label { font-size:20px; color:#707070; opacity:1; padding-right:10px; position:relative; top:-2px; font-size:18px; }
 </style>
