@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:raphael-m/bullinger-ui.git master:gh-pages
+git push -f https://github.com/raphael-m/bullinger-ui master:gh-pages
 
 cd -
