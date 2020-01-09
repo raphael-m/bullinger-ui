@@ -58,7 +58,11 @@ export default {
   },
   methods: {
     async load() {
-      this.card = await CardService.getCard(6);
+      // Get id from url, or null if not found
+      let id;
+      if(window.location.href.match(/\/assignment\/[0-9]+/))
+        id = parseInt(window.location.href.split('/').pop());
+      this.card = await CardService.getCard(id);
     },
     handleScroll() {
       if(!this.$refs.card_original) return;

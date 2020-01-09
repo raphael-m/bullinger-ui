@@ -7,7 +7,7 @@
           <div class="row narrow">
             <div class="col-sm-4 form-group">
               <label for="year">Jahr</label>
-              <input id="year" v-model.number="c.date.year" type="number" class="form-control" />
+              <input id="year" v-model.number="c.date.year" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 form-group">
               <label for="month">Monat</label>
@@ -15,13 +15,13 @@
             </div>
             <div class="col-sm-4 form-group">
               <label for="day">Tag</label>
-              <input id="day" v-model.number="c.date.day" type="number" class="form-control" />
+              <input id="day" v-model.number="c.date.day" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
               <label for="year_b">Jahr B</label>
-              <input id="year_b" v-model.number="c.date.year_b" type="number" class="form-control" />
+              <input id="year_b" v-model.number="c.date.year_b" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 from-group">
               <label for="month_b">Monat B</label>
@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-4 grom-group">
               <label for="day_b">Tag B</label>
-              <input id="day_b" v-model.number="c.date.day_b" type="number" class="form-control" />
+              <input id="day_b" v-model.number="c.date.day_b" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <label for="date_remarks">Bemerkung (Datum)</label>
