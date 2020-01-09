@@ -193,13 +193,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card-viewport { overflow:hidden; border:1px solid #000; background:#DDD; position:relative; margin-top:30px; }
+  .card-viewport { overflow:hidden; border:1px solid #000; background:#DDD; position:relative; }
   .card-wrapper { position:relative; }
   .card-image { cursor:move; width:100%; top:0; left:0; position:relative; }
 
   .animate-position { transition: all 0.2s; }
   .highlight { background:rgba(122,122,122,0.1); position:absolute; }
-  .toolbar { position:absolute; top:-40px; right:0px; border-radius:6px 6px 0 0; background:#EFEFEF; padding:1px 10px; }
+  .toolbar { border-radius:6px 6px 0 0; background:#F0F0F0; padding:1px 10px; text-align:right; margin-top:1px; }
   .toolbar a { cursor: pointer; display:inline-block; width:40px; padding-left:5px; text-align:center; font-size:22px; padding: 4px; border-left:1px solid #DADADA; color:#BFBFBF; }
   .toolbar a:first-of-type { margin-left: 12px; }
   .toolbar a:last-of-type { padding-right:0px; }
