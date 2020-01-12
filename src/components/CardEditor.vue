@@ -3,64 +3,64 @@
     <form>
       <div class="row">
         <div class="col-sm-4" v-viewer="'date'">
-          <h4>Datum</h4>
+          <h4>{{$t('editor.date.title')}}</h4>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
-              <label for="year">Jahr</label>
+              <label for="year">{{$t('editor.date.year')}}</label>
               <input id="year" v-model.number="c.date.year" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 form-group">
-              <label for="month">Monat</label>
+              <label for="month">{{$t('editor.date.month')}}</label>
               <month-input id="month" v-model.number="c.date.month" />
             </div>
             <div class="col-sm-4 form-group">
-              <label for="day">Tag</label>
+              <label for="day">{{$t('editor.date.day')}}</label>
               <input id="day" v-model.number="c.date.day" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
-              <label for="year_b">Jahr B</label>
+              <label for="year_b">{{$t('editor.date.year')}} B</label>
               <input id="year_b" v-model.number="c.date.year_b" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 from-group">
-              <label for="month_b">Monat B</label>
+              <label for="month_b">{{$t('editor.date.month')}} B</label>
               <month-input id="month_b" v-model.number="c.date.month_b" />
             </div>
             <div class="col-sm-4 grom-group">
-              <label for="day_b">Tag B</label>
+              <label for="day_b">{{$t('editor.date.day')}} B</label>
               <input id="day_b" v-model.number="c.date.day_b" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
-          <label for="date_remarks">Bemerkung (Datum)</label>
+          <label for="date_remarks">{{$t('editor.date.remarks')}}</label>
           <input id="date_remarks" v-model="c.date.remarks" type="text" class="form-control" />
         </div>
         <div class="col-sm-4" v-viewer="'sender'">
           <div class="row">
             <div class="col-sm-12">
-              <h4>Absender</h4>
+              <h4>{{$t('editor.sender.title')}}</h4>
               <div class="row narrow">
                 <div class="col-sm-6 form-group">
-                  <label for="sender_lastname">Nachname</label>
+                  <label for="sender_lastname">{{$t('editor.sender.lastname')}}</label>
                   <input id="sender_lastname" v-model="c.sender.lastname" type="text" class="form-control" />
                 </div>
                 <div class="col-sm-6 form-group">
-                  <label for="sender_firstname">Vorname</label>
+                  <label for="sender_firstname">{{$t('editor.sender.firstname')}}</label>
                   <input id="sender_firstname" v-model="c.sender.firstname" type="text" class="form-control" />
                 </div>
               </div>
               <div class="row narrow">
                 <div class="col-sm-6 form-group">
-                  <label for="sender_location">Ort</label>
+                  <label for="sender_location">{{$t('editor.sender.location')}}</label>
                   <input id="sender_location" v-model="c.sender.location" type="text" class="form-control" />
                 </div>
                 <div class="col-sm-6 form-group">
-                  <label for="sender_verified">Verfifiziert?</label>
+                  <label for="sender_verified">{{$t('editor.sender.verified')}}</label>
                   <input id="sender_verified" v-model="c.sender.verified" type="checkbox" class="form-control" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="sender_remarks">Bemerkung (Absender)</label>
+                <label for="sender_remarks">{{$t('editor.sender.remarks')}}</label>
                 <input id="sender_remarks" v-model="c.sender.remarks" type="text" class="form-control" />
               </div>
             </div>
@@ -69,29 +69,29 @@
         <div class="col-sm-4" v-viewer="'receiver'">
           <div class="row">
             <div class="col-sm-12">
-              <h4>Empfänger</h4>
+              <h4>{{$t('editor.receiver.title')}}</h4>
               <div class="row narrow">
                 <div class="col-sm-6 form-group">
-                  <label for="receiver_lastname">Nachname</label>
+                  <label for="receiver_lastname">{{$t('editor.receiver.lastname')}}</label>
                   <input id="receiver_lastname" v-model="c.receiver.lastname" type="text" class="form-control" />
                 </div>
                 <div class="col-sm-6 form-group">
-                  <label for="receiver_firstname">Vorname</label>
+                  <label for="receiver_firstname">{{$t('editor.receiver.firstname')}}</label>
                   <input id="receiver_firstname" v-model="c.receiver.firstname" type="text" class="form-control" />
                 </div>
               </div>
               <div class="row narrow">
                 <div class="col-sm-6 form-group">
-                  <label for="receiver_location">Ort</label>
+                  <label for="receiver_location">{{$t('editor.receiver.location')}}</label>
                   <input id="receiver_location" v-model="c.receiver.location" type="text" class="form-control" />
                 </div>
                 <div class="col-sm-6 form-group">
-                  <label for="receiver_verified">Verfifiziert?</label>
+                  <label for="receiver_verified">{{$t('editor.receiver.verified')}}</label>
                   <input id="receiver_verified" v-model="c.receiver.verified" type="checkbox" class="form-control" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="receiver_remarks">Bemerkung (Empfänger)</label>
+                <label for="receiver_remarks">{{$t('editor.receiver.remarks')}}</label>
                 <input id="receiver_remarks" v-model="c.receiver.remarks" type="text" class="form-control" />
               </div>
             </div>
@@ -100,73 +100,73 @@
       </div>
       <div class="row">
         <div class="col-sm-4" v-viewer="'autograph'">
-          <h4>Autograph</h4>
+          <h4>{{$t('editor.autograph.title')}}</h4>
           <div class="form-group">
-            <label for="autograph_location">Standort</label>
+            <label for="autograph_location">{{$t('editor.autograph.location')}}</label>
             <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="autograph_signature">Signatur</label>
+            <label for="autograph_signature">{{$t('editor.autograph.signature')}}</label>
             <input id="autograph_signature" v-model="c.autograph.signature" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="autograph_remarks">Bemerkung (Autograph)</label>
+            <label for="autograph_remarks">{{$t('editor.autograph.remarks')}}</label>
             <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" />
           </div>
         </div>
         <div class="col-sm-4" v-viewer="'copy'">
-          <h4>Kopie</h4>
+          <h4>{{$t('editor.copy.title')}}</h4>
           <div class="form-group">
-            <label for="copy_location">Standort</label>
+            <label for="copy_location">{{$t('editor.copy.location')}}</label>
             <input id="copy_location" v-model="c.copy.location" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="copy_signature">Signatur</label>
+            <label for="copy_signature">{{$t('editor.copy.signature')}}</label>
             <input id="copy_signature" v-model="c.copy.signature" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="copy_remarks">Bemerkung (Kopie)</label>
+            <label for="copy_remarks">{{$t('editor.copy.remarks')}}</label>
             <input id="copy_remarks" v-model="c.copy.remarks" type="text" class="form-control" />
           </div>
         </div>
       </div>
-      <h4>Inhalt</h4>
+      <h4>{{$t('editor.contents.title')}}</h4>
       <div class="row">
         <div class="col-sm-4 form-group" v-viewer="'language'">
-          <label for="language">Sprache</label>
+          <label for="language">{{$t('editor.contents.language')}}</label>
           <input id="language" v-model="c.language" type="text" class="form-control" />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'printed'">
-          <label for="printed">Gedruckt</label>
+          <label for="printed">{{$t('editor.contents.printed')}}</label>
           <input id="printed" v-model="c.printed" type="text" class="form-control" />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'literature'">
-          <label for="literature">Literatur</label>
+          <label for="literature">{{$t('editor.contents.literature')}}</label>
           <input id="literature" v-model="c.literature" type="text" class="form-control" />
         </div>
       </div>
       <div class="form-group" v-viewer="'first_sentence'">
-        <label for="first_sentence">Erster Satz</label>
+        <label for="first_sentence">{{$t('editor.contents.first_sentence')}}</label>
         <textarea id="first_sentence" spellcheck="false" v-model="c.first_sentence" class="form-control"></textarea>
       </div>
       <div class="form-group">
-        <label for="remarks">Anmerkungen / Notiz zu dieser Karteikarte</label>
+        <label for="remarks">{{$t('editor.contents.remarks')}}</label>
         <textarea id="remarks" spellcheck="false" v-model="c.remarks" class="form-control"></textarea>
       </div>
       <div class="card-actions" style="">
         <div class="form-group form-inline">
-          <label for="status">Status</label>
+          <label for="status">{{$t('editor.state.label')}}</label>
           <select id="status" class="form-control" v-model="card.state">
-            <option value="open">Offen</option>
-            <option value="undefined">Unklar</option>
-            <option value="invalid">Ungültig</option>
-            <option value="done">Abgeschlossen</option>
+            <option value="open">{{$t('editor.state.open')}}</option>
+            <option value="undefined">{{$t('editor.state.undefined')}}</option>
+            <option value="invalid">{{$t('editor.state.invalid')}}</option>
+            <option value="done">{{$t('editor.state.done')}}</option>
           </select>
         </div>
         <div>
           <div class="btn-group">
-            <button type="button" class="btn btn-secondary btn-save">Speichern</button>
-            <button type="button" class="btn btn-primary btn-save-go">Speichern und weiter</button>
+            <button type="button" class="btn btn-secondary btn-save">{{$t('editor.save')}}</button>
+            <button type="button" class="btn btn-primary btn-save-go">{{$t('editor.save_next')}}</button>
           </div>
         </div>
       </div>

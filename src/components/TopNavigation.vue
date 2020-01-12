@@ -1,13 +1,13 @@
 <template>
   <nav class="bu-nav-top">
-      <a :href="card.navigation.previous"><font-awesome-icon icon="long-arrow-alt-left" /> Vorherige Karte</a>
+      <a :href="card.navigation.previous"><font-awesome-icon icon="long-arrow-alt-left" /> {{$t('navigation.previous_card')}}</a>
       <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Übersicht</a></li>
+          <li class="breadcrumb-item"><a href="/">{{$t('navigation.overview')}}</a></li>
           <li class="breadcrumb-item"><a :href="card.card.date.year">{{card.card.date.year}}</a></li>
-          <li class="breadcrumb-item"><a :href="card.card.date.month">Juni</a></li>
-          <li class="breadcrumb-item"><a>Aktuelle Karte: {{formatTwoDigits(card.card.date.day)}}.{{formatTwoDigits(card.card.date.month)}}.{{card.card.date.year}}</a></li>
+          <li class="breadcrumb-item"><a :href="card.card.date.month">{{new Date(2020, card.card.date.month-1, 1).toLocaleString('default', { month: 'long' })}}</a></li>
+          <li class="breadcrumb-item"><a>{{$t('navigation.current')}}: {{formatTwoDigits(card.card.date.day)}}.{{formatTwoDigits(card.card.date.month)}}.{{card.card.date.year}}</a></li>
       </ul>
-      <a :href="card.navigation.next">Nächste Karte <font-awesome-icon icon="long-arrow-alt-right" /> </a>
+      <a :href="card.navigation.next">{{$t('navigation.next_card')}} <font-awesome-icon icon="long-arrow-alt-right" /> </a>
   </nav>
 </template>
 

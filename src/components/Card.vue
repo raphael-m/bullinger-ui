@@ -1,30 +1,30 @@
 <template>
   <div>
     <div class="loading" v-if="!card">
-      Loading
+      {{ $t('card.loading') }}
     </div>
     <div class="bu-card-wrapper" v-if="card">
       <top-navigation :card="card" />
       <div class="bu-card-outer">
         <div class="bu-card-original">
-          <h3>Originale Karteikarte</h3>
-          Zum Vergrössern verwenden Sie die Steuerelemente oder das Mausrad.
+          <h3>{{ $t('card.original_title')}}</h3>
+          {{ $t('card.original_intro' )}}
           <div style="padding-top:20px" ref="card_original">
             <card-viewer :style="{ transform: `translate(0, ${card_original_top}px)` }" :card="card" :focus="focus" :highlight="highlight" />
           </div>
         </div>
         <div class="bu-card-digital">
           <h3>
-            Digitale Karteikarte
+            {{ $t('card.digital_title') }}
             <span class="badge-wrapper">
-              <span class="badge badge-secondary">{{card.reviews}} Rezensionen</span>
-              <span v-if="card.state == 'open'" class="badge badge-danger">offen</span>
-              <span v-if="card.state == 'undefined'" class="badge badge-danger">unklar</span>
-              <span v-if="card.state == 'done'" class="badge badge-success">abgeschlossen</span>
-              <span v-if="card.state == 'invalid'" class="badge badge-danger">ungültig</span>
+              <span class="badge badge-secondary">{{card.reviews}} {{$tc('card.reviews', card.reviews)}}</span>
+              <span v-if="card.state == 'open'" class="badge badge-danger">{{$t('card.state.open')}}</span>
+              <span v-if="card.state == 'undefined'" class="badge badge-danger">{{$t('card.state.undefined')}}</span>
+              <span v-if="card.state == 'done'" class="badge badge-success">{{$t('card.state.done')}}</span>
+              <span v-if="card.state == 'invalid'" class="badge badge-danger">{{$t('card.state.invalid')}}</span>
             </span>
           </h3>
-          <p>Prüfen Sie die angezeigten Werte mit den Angaben auf der originalen Karteikarte.</p>
+          <p>{{ $t('card.digital_intro' )}}</p>
           <card-editor :card="card" @focus="focus = highlight = $event" @unfocus="focus = null" @highlight="highlight = $event" @unhighlight="highlight = null" />
         </div>
       </div>

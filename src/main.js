@@ -14,6 +14,16 @@ library.add(faMinus)
 library.add(faExpand)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+// Localization support
+import VueI18n from 'vue-i18n'
+import * as locales from './locales'
+Vue.use(VueI18n)
+const i18n = new VueI18n({
+  locale: 'de',
+  messages: locales.default
+})
+
 new Vue({
   render: h => h(App),
+  i18n
 }).$mount('#app')

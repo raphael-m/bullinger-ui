@@ -3,12 +3,12 @@
     <div class="toolbar">
       <div class="autofocus form-check form-check-inline">
         <input type="checkbox" class="form-check-input" v-model="autofocus" id="autofocus" />
-        <label class="form-check-label" for="autofocus">Automatisch fokussieren</label>
+        <label :title="$t('viewer.autofocus_title')" class="form-check-label" for="autofocus">{{$t('viewer.autofocus')}}</label>
       </div>
-      <label class="zoom-info">Zoom: {{(zoom * 100).toFixed() + '%'}}</label>
-      <a @click="zoomIn()" @mousedown.prevent><font-awesome-icon icon="plus" /></a>
-      <a @click="zoomOut()" @mousedown.prevent><font-awesome-icon icon="minus" /></a>
-      <a @click="reset" @mousedown.prevent><font-awesome-icon icon="expand" /></a>
+      <label class="zoom-info">{{$t('viewer.zoom')}}: {{(zoom * 100).toFixed() + '%'}}</label>
+      <a @click="zoomIn()" @mousedown.prevent :title="$t('viewer.zoom_in')"><font-awesome-icon icon="plus" /></a>
+      <a @click="zoomOut()" @mousedown.prevent :title="$t('viewer.zoom_out')"><font-awesome-icon icon="minus" /></a>
+      <a @click="reset" @mousedown.prevent :title="$t('viewer.zoom_full')"><font-awesome-icon icon="expand" /></a>
     </div>
     <div class="card-viewport" @wheel.prevent="scroll">
       <div
