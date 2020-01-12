@@ -23,6 +23,14 @@ const i18n = new VueI18n({
   messages: locales.default
 })
 
+// Toasted
+import Toasted from 'vue-toasted';
+Vue.use(Toasted, {
+  containerClass:'bu-toast-container',
+  className: 'bu-toast',
+  duration: 5000
+})
+
 new Vue({
   render: h => h(App),
   i18n

@@ -13,7 +13,16 @@ export default {
             return result.data;
         }
         catch(e) {
-            alert("Beim  Abrufen der Karteikarte ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.")
+            return { error: e };
+        }
+    },
+    async saveCard(id, card) {
+        try { 
+            let result = await axios.post("/api/assignments/" + id, card);
+            return result.data;
+        }
+        catch(e) {
+            return { error: e };
         }
     }
 }

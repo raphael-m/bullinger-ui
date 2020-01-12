@@ -1,6 +1,6 @@
 <template>
   <div class="bu-card-editor">
-    <form>
+    <form @submit="save">
       <div class="row">
         <div class="col-sm-4" v-viewer="'date'">
           <h4>{{$t('editor.date.title')}}</h4>
@@ -165,8 +165,8 @@
         </div>
         <div>
           <div class="btn-group">
-            <button type="button" class="btn btn-secondary btn-save">{{$t('editor.save')}}</button>
-            <button type="button" class="btn btn-primary btn-save-go">{{$t('editor.save_next')}}</button>
+            <button @click="save" type="button" class="btn btn-secondary btn-save">{{$t('editor.save')}}</button>
+            <button @click="save_go" type="button" class="btn btn-primary btn-save-go">{{$t('editor.save_next')}}</button>
           </div>
         </div>
       </div>
@@ -175,8 +175,9 @@
 </template>
 
 <script>
-//import CardService from '../services/card'
+import CardService from '../services/card'
 import MonthInput from './MonthInput'
+
 export default {
   name: 'CardEditor',
   props: [ 'card' ],
@@ -196,6 +197,14 @@ export default {
   mounted() {
   },
   methods: {
+    async save() {
+      let result = await CardService.saveCard(this.card.id, this.card);
+      if(!result.error) this.$toasted.success(this.$t('editor.save_success', { id: this.card.id }));
+      else this.$toasted.error(`<div>${this.$t('editor.save_error')}<br><i>${result.error.message}</i></div>`)
+    },
+    save_go() {
+
+    }
   },
   directives: {
     viewer: {

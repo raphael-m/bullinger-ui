@@ -65,7 +65,9 @@ export default {
             done: 'Abgeschlossen'
         },
         save: 'Speichern',
-        save_next: 'Speichern und weiter'
+        save_next: 'Speichern und weiter',
+        save_success: 'Karteikarte ({id}) erfolgreich gespeichert.',
+        save_error: 'Beim Speichern ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.'
     },
     viewer: {
         zoom: 'Zoom',
