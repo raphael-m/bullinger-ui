@@ -1,6 +1,8 @@
 <template>
   <select class="form-control" v-model="selected">
       <option v-for="(v,i) in months" :key="i" :value="i+1">{{v}}</option>
+      <option disabled>──────────</option>
+      <option value="0">s.d. (ohne Datum)</option>
   </select>
 </template>
 
