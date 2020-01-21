@@ -199,11 +199,14 @@ export default {
   methods: {
     async save() {
       let result = await CardService.saveCard(this.card.id, this.card);
-      if(!result.error) this.$toasted.success(this.$t('editor.save_success', { id: this.card.id }));
-      else this.$toasted.error(`<div>${this.$t('editor.save_error')}<br><i>${result.error.message}</i></div>`)
+      if(!result.error)
+        this.$toasted.success(this.$t('editor.save_success', { id: this.card.id }));
+      else
+        this.$toasted.error(`<div>${this.$t('editor.save_error')}<br><i>${result.error.message}</i></div>`)
     },
-    save_go() {
-
+    async save_go() {
+      await this.save();
+      window.location.href = this.card.navigation.next_unedited;
     }
   },
   directives: {
