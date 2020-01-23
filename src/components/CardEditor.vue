@@ -103,6 +103,7 @@
           <h4>{{$t('editor.autograph.title')}}</h4>
           <div class="form-group">
             <label for="autograph_location">{{$t('editor.autograph.location')}}</label>
+
             <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" />
           </div>
           <div class="form-group">
@@ -241,7 +242,6 @@ export default {
 
   .form-control { border:0; border-bottom: 2px solid #C3C3C3; border-radius: 0; padding:0; }
   .form-control:focus { box-shadow: none; border-color: #009688; }
-  select.form-control { -webkit-appearance: none; -webkit-border-radius: 0px; }
   
   label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
   h4 { color:#707070; font-size:20px; }
