@@ -103,8 +103,8 @@
           <h4>{{$t('editor.autograph.title')}}</h4>
           <div class="form-group">
             <label for="autograph_location">{{$t('editor.autograph.location')}}</label>
-
-            <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" />
+            <!-- <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" /> -->
+            <select-or-other :options='["Zürich Sta.", "Zürich ZB"]' v-model="c.autograph.location" />
           </div>
           <div class="form-group">
             <label for="autograph_signature">{{$t('editor.autograph.signature')}}</label>
@@ -119,7 +119,8 @@
           <h4>{{$t('editor.copy.title')}}</h4>
           <div class="form-group">
             <label for="copy_location">{{$t('editor.copy.location')}}</label>
-            <input id="copy_location" v-model="c.copy.location" type="text" class="form-control" />
+            <!-- <input id="copy_location" v-model="c.copy.location" type="text" class="form-control" /> -->
+            <select-or-other :options='["Zürich Sta.", "Zürich ZB"]' v-model="c.copy.location" />
           </div>
           <div class="form-group">
             <label for="copy_signature">{{$t('editor.copy.signature')}}</label>
@@ -178,6 +179,7 @@
 <script>
 import CardService from '../services/card'
 import MonthInput from './MonthInput'
+import SelectOrOther from './SelectOrOther'
 
 export default {
   name: 'CardEditor',
@@ -193,7 +195,7 @@ export default {
     }
   },
   components: {
-    MonthInput
+    MonthInput, SelectOrOther
   },
   mounted() {
   },
@@ -235,22 +237,28 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  .bu-card-editor { border: 1px solid #DDD; padding:15px 20px; }
-  .row.narrow { margin-right: -5px; margin-left: -5px; }
-  .row.narrow > [class*=' col-'], .row.narrow > [class^='col-'] { padding-right:5px; padding-left:5px; }
+<style lang="scss">
+    .bu-card-editor { border: 1px solid #DDD; padding:15px 20px; }
 
-  .form-control { border:0; border-bottom: 2px solid #C3C3C3; border-radius: 0; padding:0; }
-  .form-control:focus { box-shadow: none; border-color: #009688; }
-  
-  label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
-  h4 { color:#707070; font-size:20px; }
+    .bu-card-editor {
+      > form > .row { padding-bottom:15px; }
+      .row.narrow { margin-right: -5px; margin-left: -5px; }
+      .row.narrow > [class*=' col-'], .row.narrow > [class^='col-'] { padding-right:5px; padding-left:5px; }
 
-  $btn-color: #009688;
-  .btn-save-go { background:$btn-color; border-color:darken($btn-color, 5%) }
-  .btn-save-go:hover, .btn-save-go:active, .btn-save-go:focus { background:darken($btn-color, 5%); border-color:darken($btn-color, 10%) }
+      .form-control { border:0; border-bottom: 2px solid #C3C3C3; border-radius: 0; padding:0; }
+      .form-control:focus { box-shadow: none; border-color: #009688; }
+      
+      label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
+      h4 { color:#707070; font-size:20px; }
 
-  .card-actions { display:flex; justify-content: flex-end; }
-  .card-actions > .form-group { margin-right: 15px; }
-  .card-actions label { font-size:20px; color:#707070; opacity:1; padding-right:10px; position:relative; top:-2px; font-size:18px; }
+      $btn-color: #009688;
+      .btn-save-go { background:$btn-color; border-color:darken($btn-color, 5%) }
+      .btn-save-go:hover, .btn-save-go:active, .btn-save-go:focus { background:darken($btn-color, 5%); border-color:darken($btn-color, 10%) }
+
+      .card-actions { display:flex; justify-content: flex-end; }
+      .card-actions > .form-group { margin-right: 15px; }
+      .card-actions label { font-size:20px; color:#707070; opacity:1; padding-right:10px; position:relative; top:-2px; font-size:18px; }
+
+      input::placeholder { color:#BABABA }
+    }
 </style>
