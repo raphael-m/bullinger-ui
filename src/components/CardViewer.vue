@@ -41,7 +41,9 @@
               height: highlightings[highlight].h + '%'
             }"
             ></div>
-      </transition>
+        </transition>
+        <div class="copy-overlay">
+        </div>
       </div>
     </div>
   </div>
@@ -211,4 +213,8 @@ export default {
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
+
+  /* The field "copy" should be hidden on the original card to prevent confusion */
+  .copy-overlay { position:absolute; left: 66.69367909%; width:33.30632091%; top: 23.566%; height:28.65642202%; background:white; opacity:0.9; pointer-events:none; }
 </style>
+
