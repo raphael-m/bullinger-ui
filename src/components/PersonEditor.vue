@@ -48,14 +48,15 @@ export default {
   data() {
     return {
       proposals: [
-        { firstname: "Bullinger", lastname: "Heinrich", location: "Zürich" },
-        { firstname: "Vorschlag Vorname", lastname: "Nachname", location: "Ort" }
+        { lastname: "Bullinger", firstname: "Heinrich", location: "Zürich" },
+        { lastname: "Vorschlag Nachname", firstname: "Vorname", location: "Ort" }
       ]
     }
   },
   computed: {
   },
   mounted() {
+    this.$refs.typeahead.inputValue = this.value.lastname;
   },
   watch: {
   },
