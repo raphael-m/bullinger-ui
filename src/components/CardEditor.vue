@@ -39,30 +39,7 @@
           <div class="row">
             <div class="col-sm-12">
               <h4>{{$t('editor.sender.title')}}</h4>
-              <div class="row narrow">
-                <div class="col-sm-6 form-group">
-                  <label for="sender_lastname">{{$t('editor.sender.lastname')}}</label>
-                  <input id="sender_lastname" v-model="c.sender.lastname" type="text" class="form-control" />
-                </div>
-                <div class="col-sm-6 form-group">
-                  <label for="sender_firstname">{{$t('editor.sender.firstname')}}</label>
-                  <input id="sender_firstname" v-model="c.sender.firstname" type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="row narrow">
-                <div class="col-sm-6 form-group">
-                  <label for="sender_location">{{$t('editor.sender.location')}}</label>
-                  <input id="sender_location" v-model="c.sender.location" type="text" class="form-control" />
-                </div>
-                <div class="col-sm-6 form-group">
-                  <label for="sender_verified">{{$t('editor.sender.verified')}}</label>
-                  <input id="sender_verified" v-model="c.sender.verified" type="checkbox" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="sender_remarks">{{$t('editor.sender.remarks')}}</label>
-                <input id="sender_remarks" v-model="c.sender.remarks" type="text" class="form-control" />
-              </div>
+              <person-editor v-model="c.sender" id="sender" />
             </div>
           </div>
         </div>
@@ -70,30 +47,7 @@
           <div class="row">
             <div class="col-sm-12">
               <h4>{{$t('editor.receiver.title')}}</h4>
-              <div class="row narrow">
-                <div class="col-sm-6 form-group">
-                  <label for="receiver_lastname">{{$t('editor.receiver.lastname')}}</label>
-                  <input id="receiver_lastname" v-model="c.receiver.lastname" type="text" class="form-control" />
-                </div>
-                <div class="col-sm-6 form-group">
-                  <label for="receiver_firstname">{{$t('editor.receiver.firstname')}}</label>
-                  <input id="receiver_firstname" v-model="c.receiver.firstname" type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="row narrow">
-                <div class="col-sm-6 form-group">
-                  <label for="receiver_location">{{$t('editor.receiver.location')}}</label>
-                  <input id="receiver_location" v-model="c.receiver.location" type="text" class="form-control" />
-                </div>
-                <div class="col-sm-6 form-group">
-                  <label for="receiver_verified">{{$t('editor.receiver.verified')}}</label>
-                  <input id="receiver_verified" v-model="c.receiver.verified" type="checkbox" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="receiver_remarks">{{$t('editor.receiver.remarks')}}</label>
-                <input id="receiver_remarks" v-model="c.receiver.remarks" type="text" class="form-control" />
-              </div>
+              <person-editor v-model="c.receiver" id="receiver" />
             </div>
           </div>
         </div>
@@ -173,6 +127,10 @@
         </div>
       </div>
     </form>
+    <div v-if="debug">
+    <h4>Debug mode</h4>
+    <pre>{{c}}</pre>
+    </div>
   </div>
 </template>
 
@@ -180,6 +138,7 @@
 import CardService from '../services/card'
 import MonthInput from './MonthInput'
 import SelectOrOther from './SelectOrOther'
+import PersonEditor from './PersonEditor'
 
 export default {
   name: 'CardEditor',
@@ -192,10 +151,13 @@ export default {
   computed: {
     c() {
       return this.card.card;
+    },
+    debug() {
+      return window.location.href.indexOf('debug') != -1
     }
   },
   components: {
-    MonthInput, SelectOrOther
+    MonthInput, SelectOrOther, PersonEditor
   },
   mounted() {
   },
