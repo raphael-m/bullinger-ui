@@ -31,6 +31,10 @@ Vue.use(Toasted, {
   duration: 5000
 })
 
+// Import vue-textarea-autosize
+import TextareaAutosize from 'vue-textarea-autosize'
+Vue.use(TextareaAutosize)
+
 new Vue({
   render: h => h(App),
   i18n

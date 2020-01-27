@@ -33,7 +33,8 @@
             </div>
           </div>
           <label for="date_remarks">{{$t('editor.date.remarks')}}</label>
-          <input id="date_remarks" v-model="c.date.remarks" type="text" class="form-control" />
+          <!-- <input id="date_remarks" v-model="c.date.remarks" type="text" class="form-control" /> -->
+          <remark-input id="date_remarks" v-model="c.date.remarks" />
         </div>
         <div class="col-sm-4" v-viewer="'sender'">
           <div class="row">
@@ -66,7 +67,8 @@
           </div>
           <div class="form-group">
             <label for="autograph_remarks">{{$t('editor.autograph.remarks')}}</label>
-            <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" />
+            <!-- <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" /> -->
+            <remark-input id="autograph_remarks" v-model="c.autograph.remarks" />
           </div>
         </div>
         <div class="col-sm-4" v-viewer="'copy'">
@@ -82,7 +84,8 @@
           </div>
           <div class="form-group">
             <label for="copy_remarks">{{$t('editor.copy.remarks')}}</label>
-            <input id="copy_remarks" v-model="c.copy.remarks" type="text" class="form-control" />
+            <!-- <input id="copy_remarks" v-model="c.copy.remarks" type="text" class="form-control" /> -->
+            <remark-input id="copy_remarks" v-model="c.copy.remarks" />
           </div>
         </div>
       </div>
@@ -103,11 +106,11 @@
       </div>
       <div class="form-group" v-viewer="'first_sentence'">
         <label for="first_sentence">{{$t('editor.contents.first_sentence')}}</label>
-        <textarea id="first_sentence" spellcheck="false" v-model="c.first_sentence" class="form-control"></textarea>
+        <textarea-autosize id="first_sentence" spellcheck="false" v-model="c.first_sentence" class="form-control"></textarea-autosize>
       </div>
       <div class="form-group">
         <label for="remarks">{{$t('editor.contents.remarks')}}</label>
-        <textarea id="remarks" spellcheck="false" v-model="c.remarks" class="form-control"></textarea>
+        <textarea-autosize id="remarks" spellcheck="false" v-model="c.remarks" class="form-control"></textarea-autosize>
       </div>
       <div class="card-actions" style="">
         <div class="form-group form-inline">
@@ -139,6 +142,7 @@ import CardService from '../services/card'
 import MonthInput from './MonthInput'
 import SelectOrOther from './SelectOrOther'
 import PersonEditor from './PersonEditor'
+import RemarkInput from './RemarkInput'
 
 export default {
   name: 'CardEditor',
@@ -157,7 +161,7 @@ export default {
     }
   },
   components: {
-    MonthInput, SelectOrOther, PersonEditor
+    MonthInput, SelectOrOther, PersonEditor, RemarkInput
   },
   mounted() {
   },
