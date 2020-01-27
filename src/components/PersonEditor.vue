@@ -40,6 +40,7 @@
 <script>
 import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'
 import RemarkInput from './RemarkInput'
+import axios from 'axios'
 
 /**
 A component which allows selecting / entering recievers and senders
@@ -49,16 +50,14 @@ export default {
   props: [ 'value', 'id' ],
   data() {
     return {
-      proposals: [
-        { lastname: "Bullinger", firstname: "Heinrich", location: "Zürich" },
-        { lastname: "Vorschlag Nachname", firstname: "Vorname", location: "Ort" }
-      ]
+      proposals: []
     }
   },
   computed: {
   },
-  mounted() {
+  async mounted() {
     this.$refs.typeahead.inputValue = this.value.lastname;
+    this.proposals = (await axios.get('/api/persons')).data;
   },
   watch: {
   },
