@@ -11,6 +11,7 @@
             :serializer="(v) => `${v.lastname} ${v.firstname}, ${v.location}`"
             textVariant="body"
             @hit="proposalSelected"
+            type="text"
           />
       </div>
       <div class="col-sm-6 form-group">
@@ -38,7 +39,7 @@
 
 
 <script>
-import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'
+import VueBootstrapTypeahead from './vue-bootstrap-typeahead/VueBootstrapTypeahead'
 import RemarkInput from './RemarkInput'
 import axios from 'axios'
 

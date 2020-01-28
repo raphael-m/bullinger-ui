@@ -59,7 +59,8 @@
           <div class="form-group">
             <label for="autograph_location">{{$t('editor.autograph.location')}}</label>
             <!-- <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" /> -->
-            <select-or-other :options='locationProposals.autograph' v-model="c.autograph.location" />
+            <!-- <select-or-other :options='locationProposals.autograph' v-model="c.autograph.location" /> -->
+            <typeahead v-model="c.autograph.location" id="autograph_location" :proposals="locationProposals.autograph" :minMatchingChars="0" :hideEqual="true" />
           </div>
           <div class="form-group">
             <label for="autograph_signature">{{$t('editor.autograph.signature')}}</label>
@@ -76,7 +77,8 @@
           <div class="form-group">
             <label for="copy_location">{{$t('editor.copy.location')}}</label>
             <!-- <input id="copy_location" v-model="c.copy.location" type="text" class="form-control" /> -->
-            <select-or-other :options='locationProposals.copy' v-model="c.copy.location" />
+            <!-- <select-or-other :options='locationProposals.copy' v-model="c.copy.location" /> -->
+            <typeahead v-model="c.copy.location" id="copy_location" :proposals="locationProposals.copy" :minMatchingChars="0" :hideEqual="true" />
           </div>
           <div class="form-group">
             <label for="copy_signature">{{$t('editor.copy.signature')}}</label>
@@ -93,7 +95,8 @@
       <div class="row">
         <div class="col-sm-4 form-group" v-viewer="'language'">
           <label for="language">{{$t('editor.contents.language')}}</label>
-          <input id="language" v-model="c.language" type="text" class="form-control" />
+          <!-- <input id="language" v-model="c.language" type="text" class="form-control" /> -->
+          <typeahead v-model="c.language" id="language" :proposals="[ 'Latein', 'Deutsch', 'Griechisch', 'Französisch' ]" :minMatchingChars="0" :hideEqual="true" />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'printed'">
           <label for="printed">{{$t('editor.contents.printed')}}</label>
@@ -140,11 +143,11 @@
 <script>
 import CardService from '../services/card'
 import MonthInput from './MonthInput'
-import SelectOrOther from './SelectOrOther'
 import PersonEditor from './PersonEditor'
 import RemarkInput from './RemarkInput'
 import states from '../services/states'
 import locationProposals from '../services/location-proposals'
+import Typeahead from './Typeahead'
 
 export default {
   name: 'CardEditor',
@@ -165,7 +168,7 @@ export default {
     }
   },
   components: {
-    MonthInput, SelectOrOther, PersonEditor, RemarkInput
+    MonthInput, PersonEditor, RemarkInput, Typeahead
   },
   mounted() {
   },
