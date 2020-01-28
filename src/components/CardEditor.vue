@@ -59,7 +59,7 @@
           <div class="form-group">
             <label for="autograph_location">{{$t('editor.autograph.location')}}</label>
             <!-- <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" /> -->
-            <select-or-other :options='["Zürich Sta.", "Zürich ZB"]' v-model="c.autograph.location" />
+            <select-or-other :options='locationProposals.autograph' v-model="c.autograph.location" />
           </div>
           <div class="form-group">
             <label for="autograph_signature">{{$t('editor.autograph.signature')}}</label>
@@ -76,7 +76,7 @@
           <div class="form-group">
             <label for="copy_location">{{$t('editor.copy.location')}}</label>
             <!-- <input id="copy_location" v-model="c.copy.location" type="text" class="form-control" /> -->
-            <select-or-other :options='["Zürich Sta.", "Zürich ZB"]' v-model="c.copy.location" />
+            <select-or-other :options='locationProposals.copy' v-model="c.copy.location" />
           </div>
           <div class="form-group">
             <label for="copy_signature">{{$t('editor.copy.signature')}}</label>
@@ -144,6 +144,7 @@ import SelectOrOther from './SelectOrOther'
 import PersonEditor from './PersonEditor'
 import RemarkInput from './RemarkInput'
 import states from '../services/states'
+import locationProposals from '../services/location-proposals'
 
 export default {
   name: 'CardEditor',
@@ -151,7 +152,8 @@ export default {
   data() {
     return {
       month: 0,
-      states
+      states,
+      locationProposals
     }
   },
   computed: {
