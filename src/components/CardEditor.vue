@@ -116,10 +116,10 @@
         <div class="form-group form-inline">
           <label for="status">{{$t('editor.state.label')}}</label>
           <select id="status" class="form-control" v-model="card.state">
-            <option value="open">{{$t('editor.state.open')}}</option>
-            <option value="undefined">{{$t('editor.state.undefined')}}</option>
-            <option value="invalid">{{$t('editor.state.invalid')}}</option>
-            <option value="done">{{$t('editor.state.done')}}</option>
+            <option :value="states.open">{{$t('editor.state.open')}}</option>
+            <option :value="states.unclear">{{$t('editor.state.unclear')}}</option>
+            <option :value="states.invalid">{{$t('editor.state.invalid')}}</option>
+            <option :value="states.done">{{$t('editor.state.done')}}</option>
           </select>
         </div>
         <div>
@@ -143,13 +143,15 @@ import MonthInput from './MonthInput'
 import SelectOrOther from './SelectOrOther'
 import PersonEditor from './PersonEditor'
 import RemarkInput from './RemarkInput'
+import states from '../services/states'
 
 export default {
   name: 'CardEditor',
   props: [ 'card' ],
   data() {
     return {
-      month: 0
+      month: 0,
+      states
     }
   },
   computed: {

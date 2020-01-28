@@ -7,7 +7,7 @@ export default {
         reviews: 'Rezension | Rezensionen',
         state: {
             open: 'offen',
-            undefined: 'unklar',
+            unclear: 'unklar',
             done: 'abgeschlossen',
             invalid: 'ungültig'
         },
@@ -60,7 +60,7 @@ export default {
         state: {
             label: 'Status',
             open: 'Offen',
-            undefined: 'Unklar',
+            unclear: 'Unklar',
             invalid: 'Ungültig',
             done: 'Abgeschlossen'
         },

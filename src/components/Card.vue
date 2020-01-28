@@ -18,10 +18,10 @@
             {{ $t('card.digital_title') }}
             <span class="badge-wrapper">
               <span class="badge badge-secondary">{{card.reviews}} {{$tc('card.reviews', card.reviews)}}</span>
-              <span v-if="card.state == 'open'" class="badge badge-danger">{{$t('card.state.open')}}</span>
-              <span v-if="card.state == 'undefined'" class="badge badge-danger">{{$t('card.state.undefined')}}</span>
-              <span v-if="card.state == 'done'" class="badge badge-success">{{$t('card.state.done')}}</span>
-              <span v-if="card.state == 'invalid'" class="badge badge-danger">{{$t('card.state.invalid')}}</span>
+              <span v-if="card.state == states.open" class="badge badge-danger">{{$t('card.state.open')}}</span>
+              <span v-if="card.state == states.unclear" class="badge badge-danger">{{$t('card.state.unclear')}}</span>
+              <span v-if="card.state == states.done" class="badge badge-success">{{$t('card.state.done')}}</span>
+              <span v-if="card.state == states.invalid" class="badge badge-danger">{{$t('card.state.invalid')}}</span>
             </span>
           </h3>
           <p>{{ $t('card.digital_intro' )}}</p>
@@ -37,6 +37,7 @@ import TopNavigation from './TopNavigation'
 import CardService from '../services/card'
 import CardEditor from './CardEditor'
 import CardViewer from './CardViewer'
+import states from '../services/states'
 
 export default {
   name: 'Card',
@@ -45,7 +46,8 @@ export default {
       card: null,
       focus: null,
       highlight: null,
-      card_original_top: 0
+      card_original_top: 0,
+      states
     }
   },
   components: {
