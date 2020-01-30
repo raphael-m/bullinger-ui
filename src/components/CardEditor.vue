@@ -60,7 +60,7 @@
             <label for="autograph_location">{{$t('editor.autograph.location')}}</label>
             <!-- <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" /> -->
             <!-- <select-or-other :options='locationProposals.autograph' v-model="c.autograph.location" /> -->
-            <typeahead v-model="c.autograph.location" id="autograph_location" :proposals="locationProposals.autograph" :minMatchingChars="0" :hideEqual="true" />
+            <typeahead v-model="c.autograph.location" id="autograph_location" :proposals="locationProposals.autograph" :maxMatches="50" :minMatchingChars="0" :hideEqual="true" />
           </div>
           <div class="form-group">
             <label for="autograph_signature">{{$t('editor.autograph.signature')}}</label>
@@ -78,7 +78,7 @@
             <label for="copy_location">{{$t('editor.copy.location')}}</label>
             <!-- <input id="copy_location" v-model="c.copy.location" type="text" class="form-control" /> -->
             <!-- <select-or-other :options='locationProposals.copy' v-model="c.copy.location" /> -->
-            <typeahead v-model="c.copy.location" id="copy_location" :proposals="locationProposals.copy" :minMatchingChars="0" :hideEqual="true" />
+            <typeahead v-model="c.copy.location" id="copy_location" :proposals="locationProposals.copy" :maxMatches="50"  :minMatchingChars="0" :hideEqual="true" />
           </div>
           <div class="form-group">
             <label for="copy_signature">{{$t('editor.copy.signature')}}</label>

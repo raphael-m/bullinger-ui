@@ -9,8 +9,8 @@
     :minMatchingChars="minMatchingChars"
     :maxMatches="maxMatches"
     type="text"
-    :hideEqual="hideEqual"
-  />
+    :hideEqual="hideEqual">
+  </vue-bootstrap-typeahead>
 </template>
 
 <script>
