@@ -1,5 +1,5 @@
 # This file has been used prior to setting up automated github actions
-# it should not be
+# it should not be used anymore
 
 #!/usr/bin/env sh
 
