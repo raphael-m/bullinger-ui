@@ -1,3 +1,6 @@
+# This file has been used prior to setting up automated github actions
+# it should not be
+
 #!/usr/bin/env sh
 
 # abort on errors
