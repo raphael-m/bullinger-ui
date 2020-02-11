@@ -1,6 +1,6 @@
 <template>
   <div class="bu-card-editor">
-    <form @submit="save">
+    <form @submit="save_reload">
       <div class="row">
         <div class="col-sm-4" v-viewer="'date'">
           <h4>{{$t('editor.date.title')}}</h4>
@@ -133,7 +133,7 @@
         </div>
         <div>
           <div class="btn-group">
-            <button @click="save" type="button" class="btn btn-secondary btn-save">{{$t('editor.save')}}</button>
+            <button @click="save_reload" type="button" class="btn btn-secondary btn-save">{{$t('editor.save')}}</button>
             <button @click="save_go" type="button" class="btn btn-primary btn-save-go">{{$t('editor.save_next')}}</button>
           </div>
         </div>
@@ -179,13 +179,16 @@ export default {
   mounted() {
   },
   methods: {
+    async save_reload() {
+      await this.save();
+      this.$emit('saved');
+    },
     async save() {
       let result = await CardService.saveCard(this.card.id, this.card);
       if(!result.error)
         this.$toasted.success(this.$t('editor.save_success', { id: this.card.id }));
       else
         this.$toasted.error(`<div>${this.$t('editor.save_error')}<br><i>${result.error.message}</i></div>`)
-      this.$emit('saved');
     },
     async save_go() {
       await this.save();
