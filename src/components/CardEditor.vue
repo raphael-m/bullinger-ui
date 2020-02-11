@@ -185,6 +185,7 @@ export default {
         this.$toasted.success(this.$t('editor.save_success', { id: this.card.id }));
       else
         this.$toasted.error(`<div>${this.$t('editor.save_error')}<br><i>${result.error.message}</i></div>`)
+      this.$emit('saved');
     },
     async save_go() {
       await this.save();
