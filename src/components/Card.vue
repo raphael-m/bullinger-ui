@@ -25,7 +25,7 @@
             </span>
           </h3>
           <p>{{ $t('card.digital_intro' )}}</p>
-          <card-editor :card="card" @focus="focus = highlight = $event" @unfocus="focus = null" @highlight="highlight = $event" @unhighlight="highlight = null" />
+          <card-editor :card="card" @focus="focus = highlight = $event" @unfocus="focus = null" @highlight="highlight = $event" @unhighlight="highlight = null" @saved="saved" />
         </div>
       </div>
     </div>
@@ -69,6 +69,10 @@ export default {
     handleScroll() {
       if(!this.$refs.card_original) return;
       this.card_original_top = Math.max(0, -this.$refs.card_original.getBoundingClientRect().top);
+    },
+    saved() {
+      // Reload when card was saved
+      this.load();
     }
   },
   created () {
