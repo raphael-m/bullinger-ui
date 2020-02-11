@@ -91,7 +91,7 @@
           </div>
         </div>
       </div>
-      <h4>{{$t('editor.contents.title')}}</h4>
+      <!-- <h4>{{$t('editor.contents.title')}}</h4> -->
       <div class="row">
         <div class="col-sm-4 form-group" v-viewer="'language'">
           <label for="language">{{$t('editor.contents.language')}}</label>
@@ -117,13 +117,19 @@
       </div>
       <div class="card-actions" style="">
         <div class="form-group form-inline">
-          <label for="status">{{$t('editor.state.label')}}</label>
-          <select id="status" class="form-control" v-model="card.state">
+          <label for="status">{{$t('editor.state.label')}}:</label>
+          <!-- <select id="status" class="form-control" v-model="card.state">
             <option :value="states.open">{{$t('editor.state.open')}}</option>
             <option :value="states.unclear">{{$t('editor.state.unclear')}}</option>
             <option :value="states.invalid">{{$t('editor.state.invalid')}}</option>
             <option :value="states.done">{{$t('editor.state.done')}}</option>
-          </select>
+          </select> -->
+          <div class="custom-control custom-radio custom-control-inline" v-for="s in ['open', 'unclear', 'invalid', 'done']" :key="s">
+            <input class="custom-control-input" type="radio" :id="'status_' + s" :value="states[s]" v-model="card.state" />
+            <label class="custom-control-label" :for="'status_' + s">{{$t('editor.state.' + s)}}</label>
+          </div>
+          
+          <!-- <span v-for="s in ['open', 'unclear', 'invalid', 'done']" :key="s" class="badge badge-danger">{{$t('editor.state.' + s)}}</span> -->
         </div>
         <div>
           <div class="btn-group">
@@ -224,27 +230,29 @@ export default {
 </script>
 
 <style lang="scss">
-    .bu-card-editor { border: 1px solid #DDD; padding:15px 20px; }
+  
+  .bu-card-editor { border: 1px solid #DDD; padding:15px 20px; }
 
-    .bu-card-editor {
-      > form > .row { padding-bottom:15px; }
-      .row.narrow { margin-right: -5px; margin-left: -5px; }
-      .row.narrow > [class*=' col-'], .row.narrow > [class^='col-'] { padding-right:5px; padding-left:5px; }
+  .bu-card-editor {
+    > form > .row { padding-bottom:15px; }
+    .row.narrow { margin-right: -5px; margin-left: -5px; }
+    .row.narrow > [class*=' col-'], .row.narrow > [class^='col-'] { padding-right:5px; padding-left:5px; }
 
-      .form-control { border:0; border-bottom: 2px solid #C3C3C3; border-radius: 0; padding:0; }
-      .form-control:focus { box-shadow: none; border-color: #009688; }
-      
-      label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
-      h4 { color:#707070; font-size:20px; }
+    .form-control { border:0; border-bottom: 2px solid #C3C3C3; border-radius: 0; padding:0; }
+    .form-control:focus { box-shadow: none; border-color: #009688; }
+    
+    label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
+    h4 { color:#707070; font-size:20px; }
 
-      $btn-color: #009688;
-      .btn-save-go { background:$btn-color; border-color:darken($btn-color, 5%) }
-      .btn-save-go:hover, .btn-save-go:active, .btn-save-go:focus { background:darken($btn-color, 5%); border-color:darken($btn-color, 10%) }
+    $btn-color: #009688;
+    .btn-save-go { background:$btn-color; border-color:darken($btn-color, 5%) }
+    .btn-save-go:hover, .btn-save-go:active, .btn-save-go:focus { background:darken($btn-color, 5%); border-color:darken($btn-color, 10%) }
 
-      .card-actions { display:flex; justify-content: flex-end; }
-      .card-actions > .form-group { margin-right: 15px; }
-      .card-actions label { font-size:20px; color:#707070; opacity:1; padding-right:10px; position:relative; top:-2px; font-size:18px; }
+    .card-actions { display:flex; justify-content: flex-end; }
+    .card-actions > .form-group { margin-right: 15px; }
+    .card-actions label { font-size:20px; color:#707070; opacity:1; padding-right:10px; position:relative; top:-1px; font-size:18px; }
+    .card-actions label.custom-control-label { font-size:17px; padding-right:0; top:0; }
+    input::placeholder { color:#BABABA }
 
-      input::placeholder { color:#BABABA }
-    }
+  }
 </style>
