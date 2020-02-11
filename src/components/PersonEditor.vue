@@ -25,8 +25,8 @@
           <input :id="id + '_location'" v-model="value.location" type="text" class="form-control" />
       </div>
       <div class="col-sm-6 form-group">
-          <label :for="id + '_verified'">{{$t(`editor.${id}.verified`)}}</label>
-          <input :id="id + '_verified'" v-model="value.verified" type="checkbox" class="form-control" />
+          <label :for="id + '_not_verified'">{{$t(`editor.${id}.not_verified`)}}</label>
+          <input :id="id + '_not_verified'" v-model="not_verified" type="checkbox" class="form-control" />
       </div>
     </div>
     <div class="form-group">
@@ -55,6 +55,10 @@ export default {
     }
   },
   computed: {
+    not_verified: {
+      get() { return this.value.verified == null ? false : !this.value.verified; },
+      set(val) { this.value.verified = !val; }
+    }
   },
   async mounted() {
     this.$refs.typeahead.inputValue = this.value.lastname;
