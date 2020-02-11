@@ -7,10 +7,10 @@
 
 <script>
 /**
-A component which allows multi-line text-input but shows only one line when not focused
+A component which allows multi-line text-input but shows only one line (collapsed) when not focused
  */
 export default {
-  name: 'RemarkInput',
+  name: 'CollapseInput',
   props: [ 'value', 'id' ],
   data() {
     return {

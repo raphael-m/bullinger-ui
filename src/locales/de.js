@@ -27,6 +27,7 @@ export default {
             firstname: 'Vorname',
             location: 'Ort',
             verified: 'Verifiziert?',
+            not_verified: 'Nicht verifiziert?',
             remarks: 'Bemerkung (Absender)'
         },
         receiver: {
@@ -35,6 +36,7 @@ export default {
             firstname: 'Vorname',
             location: 'Ort',
             verified: 'Verifiziert?',
+            not_verified: 'Nicht verifiziert?',
             remarks: 'Bemerkung (Empfänger)'
         },
         autograph: {

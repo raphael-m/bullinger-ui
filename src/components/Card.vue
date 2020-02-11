@@ -87,8 +87,7 @@ export default {
   .bu-card-original { width:40%; padding-right:40px; }
   .bu-card-digital { width:60%; }
 
+  @import '../assets/badges.scss';
   .badge-wrapper { margin-left: 10px; position:relative; top:-2px; }
-  .badge { border-radius:20px; color: #FFF; font-weight:normal; padding:7px 10px; margin-right:6px; }
-  .badge-secondary { background: #8E8B8B; }
-  .badge-danger { background:#FF7676; }
+
 </style>

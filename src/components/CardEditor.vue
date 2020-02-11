@@ -7,7 +7,7 @@
           <div class="row narrow">
             <div class="col-sm-4 form-group">
               <label for="year">{{$t('editor.date.year')}}</label>
-              <input id="year" v-model.number="c.date.year" type="number" @mousewheel.prevent class="form-control" />
+              <input id="year" v-model.number="c.date.year" @change="checkNumber" min="0" max="2020" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 form-group">
               <label for="month">{{$t('editor.date.month')}}</label>
@@ -15,13 +15,13 @@
             </div>
             <div class="col-sm-4 form-group">
               <label for="day">{{$t('editor.date.day')}}</label>
-              <input id="day" v-model.number="c.date.day" type="number" @mousewheel.prevent class="form-control" />
+              <input id="day" v-model.number="c.date.day" @change="checkNumber" min="1" max="31" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
               <label for="year_b">{{$t('editor.date.year')}} B</label>
-              <input id="year_b" v-model.number="c.date.year_b" type="number" @mousewheel.prevent class="form-control" />
+              <input id="year_b" v-model.number="c.date.year_b" @change="checkNumber" min="0" max="2020" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 from-group">
               <label for="month_b">{{$t('editor.date.month')}} B</label>
@@ -29,12 +29,12 @@
             </div>
             <div class="col-sm-4 grom-group">
               <label for="day_b">{{$t('editor.date.day')}} B</label>
-              <input id="day_b" v-model.number="c.date.day_b" type="number" @mousewheel.prevent class="form-control" />
+              <input id="day_b" v-model.number="c.date.day_b" @change="checkNumber" min="1" max="31" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <label for="date_remarks">{{$t('editor.date.remarks')}}</label>
           <!-- <input id="date_remarks" v-model="c.date.remarks" type="text" class="form-control" /> -->
-          <remark-input id="date_remarks" v-model="c.date.remarks" />
+          <collapse-input id="date_remarks" v-model="c.date.remarks" />
         </div>
         <div class="col-sm-4" v-viewer="'sender'">
           <div class="row">
@@ -69,7 +69,7 @@
           <div class="form-group">
             <label for="autograph_remarks">{{$t('editor.autograph.remarks')}}</label>
             <!-- <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" /> -->
-            <remark-input id="autograph_remarks" v-model="c.autograph.remarks" />
+            <collapse-input id="autograph_remarks" v-model="c.autograph.remarks" />
           </div>
         </div>
         <div class="col-sm-4" v-viewer="'copy'">
@@ -87,11 +87,11 @@
           <div class="form-group">
             <label for="copy_remarks">{{$t('editor.copy.remarks')}}</label>
             <!-- <input id="copy_remarks" v-model="c.copy.remarks" type="text" class="form-control" /> -->
-            <remark-input id="copy_remarks" v-model="c.copy.remarks" />
+            <collapse-input id="copy_remarks" v-model="c.copy.remarks" />
           </div>
         </div>
       </div>
-      <h4>{{$t('editor.contents.title')}}</h4>
+      <!-- <h4>{{$t('editor.contents.title')}}</h4> -->
       <div class="row">
         <div class="col-sm-4 form-group" v-viewer="'language'">
           <label for="language">{{$t('editor.contents.language')}}</label>
@@ -100,11 +100,11 @@
         </div>
         <div class="col-sm-4 form-group" v-viewer="'printed'">
           <label for="printed">{{$t('editor.contents.printed')}}</label>
-          <input id="printed" v-model="c.printed" type="text" class="form-control" />
+          <collapse-input id="printed" v-model="c.printed" />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'literature'">
           <label for="literature">{{$t('editor.contents.literature')}}</label>
-          <input id="literature" v-model="c.literature" type="text" class="form-control" />
+          <collapse-input id="literature" v-model="c.literature" />
         </div>
       </div>
       <div class="form-group" v-viewer="'first_sentence'">
@@ -117,13 +117,19 @@
       </div>
       <div class="card-actions" style="">
         <div class="form-group form-inline">
-          <label for="status">{{$t('editor.state.label')}}</label>
-          <select id="status" class="form-control" v-model="card.state">
+          <label for="status">{{$t('editor.state.label')}}:</label>
+          <!-- <select id="status" class="form-control" v-model="card.state">
             <option :value="states.open">{{$t('editor.state.open')}}</option>
             <option :value="states.unclear">{{$t('editor.state.unclear')}}</option>
             <option :value="states.invalid">{{$t('editor.state.invalid')}}</option>
             <option :value="states.done">{{$t('editor.state.done')}}</option>
-          </select>
+          </select> -->
+          <div class="custom-control custom-radio custom-control-inline" v-for="s in ['open', 'unclear', 'invalid', 'done']" :key="s">
+            <input class="custom-control-input" type="radio" :id="'status_' + s" :value="states[s]" v-model="card.state" />
+            <label class="custom-control-label" :for="'status_' + s">{{$t('editor.state.' + s)}}</label>
+          </div>
+          
+          <!-- <span v-for="s in ['open', 'unclear', 'invalid', 'done']" :key="s" class="badge badge-danger">{{$t('editor.state.' + s)}}</span> -->
         </div>
         <div>
           <div class="btn-group">
@@ -144,7 +150,7 @@
 import CardService from '../services/card'
 import MonthInput from './MonthInput'
 import PersonEditor from './PersonEditor'
-import RemarkInput from './RemarkInput'
+import CollapseInput from './CollapseInput'
 import states from '../services/states'
 import locationProposals from '../services/location-proposals'
 import Typeahead from './Typeahead'
@@ -168,7 +174,7 @@ export default {
     }
   },
   components: {
-    MonthInput, PersonEditor, RemarkInput, Typeahead
+    MonthInput, PersonEditor, CollapseInput, Typeahead
   },
   mounted() {
   },
@@ -183,6 +189,19 @@ export default {
     async save_go() {
       await this.save();
       window.location.href = this.card.navigation.next_unedited;
+    },
+    checkNumber(e) {
+      let t = e.target;
+      if(t.valueAsNumber < t.min)
+      {
+        t.value = t.min;
+        t.dispatchEvent(new Event('input'))
+      }
+      if(t.valueAsNumber > t.max)
+      {
+        t.value = t.max;
+        t.dispatchEvent(new Event('input'))
+      }
     }
   },
   directives: {
@@ -211,27 +230,29 @@ export default {
 </script>
 
 <style lang="scss">
-    .bu-card-editor { border: 1px solid #DDD; padding:15px 20px; }
+  
+  .bu-card-editor { border: 1px solid #DDD; padding:15px 20px; }
 
-    .bu-card-editor {
-      > form > .row { padding-bottom:15px; }
-      .row.narrow { margin-right: -5px; margin-left: -5px; }
-      .row.narrow > [class*=' col-'], .row.narrow > [class^='col-'] { padding-right:5px; padding-left:5px; }
+  .bu-card-editor {
+    > form > .row { padding-bottom:15px; }
+    .row.narrow { margin-right: -5px; margin-left: -5px; }
+    .row.narrow > [class*=' col-'], .row.narrow > [class^='col-'] { padding-right:5px; padding-left:5px; }
 
-      .form-control { border:0; border-bottom: 2px solid #C3C3C3; border-radius: 0; padding:0; }
-      .form-control:focus { box-shadow: none; border-color: #009688; }
-      
-      label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
-      h4 { color:#707070; font-size:20px; }
+    .form-control { border:0; border-bottom: 2px solid #C3C3C3; border-radius: 0; padding:0; }
+    .form-control:focus { box-shadow: none; border-color: #009688; }
+    
+    label { font-family: 'Roboto', sans-serif; font-size:12px; color:#000; opacity:0.34; margin-bottom:0rem; }
+    h4 { color:#707070; font-size:20px; }
 
-      $btn-color: #009688;
-      .btn-save-go { background:$btn-color; border-color:darken($btn-color, 5%) }
-      .btn-save-go:hover, .btn-save-go:active, .btn-save-go:focus { background:darken($btn-color, 5%); border-color:darken($btn-color, 10%) }
+    $btn-color: #009688;
+    .btn-save-go { background:$btn-color; border-color:darken($btn-color, 5%) }
+    .btn-save-go:hover, .btn-save-go:active, .btn-save-go:focus { background:darken($btn-color, 5%); border-color:darken($btn-color, 10%) }
 
-      .card-actions { display:flex; justify-content: flex-end; }
-      .card-actions > .form-group { margin-right: 15px; }
-      .card-actions label { font-size:20px; color:#707070; opacity:1; padding-right:10px; position:relative; top:-2px; font-size:18px; }
+    .card-actions { display:flex; justify-content: flex-end; }
+    .card-actions > .form-group { margin-right: 15px; }
+    .card-actions label { font-size:20px; color:#707070; opacity:1; padding-right:10px; position:relative; top:-1px; font-size:18px; }
+    .card-actions label.custom-control-label { font-size:17px; padding-right:0; top:0; }
+    input::placeholder { color:#BABABA }
 
-      input::placeholder { color:#BABABA }
-    }
+  }
 </style>
