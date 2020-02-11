@@ -32,7 +32,7 @@
     <div class="form-group">
       <label :for="id + '_remarks'">{{$t(`editor.${id}.remarks`)}}</label>
       <!-- <input :id="id + '_remarks'" v-model="value.remarks" type="text" class="form-control" /> -->
-      <remark-input :id="id + '_remarks'" v-model="value.remarks" />
+      <collapse-input :id="id + '_remarks'" v-model="value.remarks" />
     </div>
   </div>
 </template>
@@ -40,7 +40,7 @@
 
 <script>
 import VueBootstrapTypeahead from './vue-bootstrap-typeahead/VueBootstrapTypeahead'
-import RemarkInput from './RemarkInput'
+import CollapseInput from './CollapseInput'
 import axios from 'axios'
 
 /**
@@ -73,7 +73,7 @@ export default {
   },
   components: {
     VueBootstrapTypeahead,
-    RemarkInput
+    CollapseInput
   }
 }
 </script>

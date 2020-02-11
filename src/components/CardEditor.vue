@@ -34,7 +34,7 @@
           </div>
           <label for="date_remarks">{{$t('editor.date.remarks')}}</label>
           <!-- <input id="date_remarks" v-model="c.date.remarks" type="text" class="form-control" /> -->
-          <remark-input id="date_remarks" v-model="c.date.remarks" />
+          <collapse-input id="date_remarks" v-model="c.date.remarks" />
         </div>
         <div class="col-sm-4" v-viewer="'sender'">
           <div class="row">
@@ -69,7 +69,7 @@
           <div class="form-group">
             <label for="autograph_remarks">{{$t('editor.autograph.remarks')}}</label>
             <!-- <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" /> -->
-            <remark-input id="autograph_remarks" v-model="c.autograph.remarks" />
+            <collapse-input id="autograph_remarks" v-model="c.autograph.remarks" />
           </div>
         </div>
         <div class="col-sm-4" v-viewer="'copy'">
@@ -87,7 +87,7 @@
           <div class="form-group">
             <label for="copy_remarks">{{$t('editor.copy.remarks')}}</label>
             <!-- <input id="copy_remarks" v-model="c.copy.remarks" type="text" class="form-control" /> -->
-            <remark-input id="copy_remarks" v-model="c.copy.remarks" />
+            <collapse-input id="copy_remarks" v-model="c.copy.remarks" />
           </div>
         </div>
       </div>
@@ -100,11 +100,11 @@
         </div>
         <div class="col-sm-4 form-group" v-viewer="'printed'">
           <label for="printed">{{$t('editor.contents.printed')}}</label>
-          <input id="printed" v-model="c.printed" type="text" class="form-control" />
+          <collapse-input id="printed" v-model="c.printed" />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'literature'">
           <label for="literature">{{$t('editor.contents.literature')}}</label>
-          <input id="literature" v-model="c.literature" type="text" class="form-control" />
+          <collapse-input id="literature" v-model="c.literature" />
         </div>
       </div>
       <div class="form-group" v-viewer="'first_sentence'">
@@ -150,7 +150,7 @@
 import CardService from '../services/card'
 import MonthInput from './MonthInput'
 import PersonEditor from './PersonEditor'
-import RemarkInput from './RemarkInput'
+import CollapseInput from './CollapseInput'
 import states from '../services/states'
 import locationProposals from '../services/location-proposals'
 import Typeahead from './Typeahead'
@@ -174,7 +174,7 @@ export default {
     }
   },
   components: {
-    MonthInput, PersonEditor, RemarkInput, Typeahead
+    MonthInput, PersonEditor, CollapseInput, Typeahead
   },
   mounted() {
   },
