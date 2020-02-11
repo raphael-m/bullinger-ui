@@ -7,7 +7,7 @@
           <div class="row narrow">
             <div class="col-sm-4 form-group">
               <label for="year">{{$t('editor.date.year')}}</label>
-              <input id="year" v-model.number="c.date.year" type="number" @mousewheel.prevent class="form-control" />
+              <input id="year" v-model.number="c.date.year" @change="checkNumber" min="0" max="2020" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 form-group">
               <label for="month">{{$t('editor.date.month')}}</label>
@@ -15,13 +15,13 @@
             </div>
             <div class="col-sm-4 form-group">
               <label for="day">{{$t('editor.date.day')}}</label>
-              <input id="day" v-model.number="c.date.day" type="number" @mousewheel.prevent class="form-control" />
+              <input id="day" v-model.number="c.date.day" @change="checkNumber" min="1" max="31" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
               <label for="year_b">{{$t('editor.date.year')}} B</label>
-              <input id="year_b" v-model.number="c.date.year_b" type="number" @mousewheel.prevent class="form-control" />
+              <input id="year_b" v-model.number="c.date.year_b" @change="checkNumber" min="0" max="2020" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 from-group">
               <label for="month_b">{{$t('editor.date.month')}} B</label>
@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-4 grom-group">
               <label for="day_b">{{$t('editor.date.day')}} B</label>
-              <input id="day_b" v-model.number="c.date.day_b" type="number" @mousewheel.prevent class="form-control" />
+              <input id="day_b" v-model.number="c.date.day_b" @change="checkNumber" min="1" max="31" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <label for="date_remarks">{{$t('editor.date.remarks')}}</label>
@@ -183,6 +183,19 @@ export default {
     async save_go() {
       await this.save();
       window.location.href = this.card.navigation.next_unedited;
+    },
+    checkNumber(e) {
+      let t = e.target;
+      if(t.valueAsNumber < t.min)
+      {
+        t.value = t.min;
+        t.dispatchEvent(new Event('input'))
+      }
+      if(t.valueAsNumber > t.max)
+      {
+        t.value = t.max;
+        t.dispatchEvent(new Event('input'))
+      }
     }
   },
   directives: {

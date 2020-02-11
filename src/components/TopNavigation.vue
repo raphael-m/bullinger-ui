@@ -3,9 +3,11 @@
       <a :href="card.navigation.previous"><font-awesome-icon icon="long-arrow-alt-left" /> {{$t('navigation.previous_card')}}</a>
       <ul class="breadcrumb">
           <li class="breadcrumb-item"><a href="/overview">{{$t('navigation.overview')}}</a></li>
-          <li class="breadcrumb-item"><a :href="'/overview_year/' + card.card.date.year">{{card.card.date.year}}</a></li>
-          <li class="breadcrumb-item"><a :href="'/overview_month/' + card.card.date.year + '/' + card.card.date.month">{{new Date(2020, card.card.date.month-1, 1).toLocaleString('default', { month: 'long' })}}</a></li>
-          <li class="breadcrumb-item"><a>{{$t('navigation.current')}}: {{formatTwoDigits(card.card.date.day)}}.{{formatTwoDigits(card.card.date.month)}}.{{card.card.date.year}}</a></li>
+          <li class="breadcrumb-item"><a :href="'/overview_year/' + (date.year || noDate)">{{date.year || noDate}}</a></li>
+          <li class="breadcrumb-item">
+            <a :href="'/overview_month/' + (date.year || noDate) + '/' + (date.month || noDate)">{{month}}</a>
+          </li>
+          <li class="breadcrumb-item"><a>{{$t('navigation.current')}}: {{current}}</a></li>
       </ul>
       <a :href="card.navigation.next">{{$t('navigation.next_card')}} <font-awesome-icon icon="long-arrow-alt-right" /> </a>
   </nav>
@@ -14,6 +16,24 @@
 <script>
 export default {
     props: ["card"],
+    data() {
+      return {
+        noDate: 's.d.'
+      }
+    },
+    computed: {
+      date() {
+        return this.card.card.date;
+      },
+      month() {
+        if(!this.date.month)
+          return this.noDate;
+        return new Date(2020, this.date.month - 1, 1).toLocaleString('default', { month: 'long' })
+      },
+      current() {
+        return `${this.formatTwoDigits(this.date.day)}.${this.formatTwoDigits(this.date.month)}.${this.date.year}`
+      }
+    },
     methods: {
         formatTwoDigits(val) {
             if(val < 10) return "0" + val;
