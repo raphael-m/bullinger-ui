@@ -18,7 +18,7 @@
 <script>
 import VueBootstrapTypeaheadListItem from './VueBootstrapTypeaheadListItem.vue'
 function sanitize(text) {
-  return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return text ? text.replace(/</g, '&lt;').replace(/>/g, '&gt;') : "";
 }
 function escapeRegExp(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -60,7 +60,7 @@ export default {
     highlight() {
       return (text) => {
         text = sanitize(text)
-        if (this.query.length === 0) {
+        if (!this.query || this.query.length === 0) {
           return text
         }
         const re = new RegExp(this.escapedQuery, 'gi')
