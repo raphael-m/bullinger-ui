@@ -6,3 +6,4 @@ Changes:
 - Allow specifying the input field type with a property
 - Optionally hide matches which equal to the query (property hideEqual)
 - Fix issue where a "shadow" is shown when text field is focused but no matched items are available
+- Fix issue when query is null
