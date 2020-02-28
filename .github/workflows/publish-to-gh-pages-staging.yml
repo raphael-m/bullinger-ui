@@ -15,7 +15,7 @@ jobs:
     - name: Build
       run: |
         yarn install
-        NODE_ENV=staging
+        export NODE_ENV=staging
         yarn run build
         cd dist
         echo 'bullinger.raphaelm.ch' > CNAME
