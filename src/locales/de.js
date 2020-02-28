@@ -17,8 +17,12 @@ export default {
         date: {
             title: 'Datum',
             year: 'Jahr',
+            year_tip: 'Hier erscheint der Tipp zu diesem Feld.',
+            year_b: 'Jahr B',
             month: 'Monat',
+            month_b: "Monat B",
             day: 'Tag',
+            day_b: 'Tag B',
             remarks: 'Bemerkung (Datum)'
         },
         sender: {

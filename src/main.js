@@ -5,13 +5,14 @@ Vue.config.productionTip = false
 
 // Import fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faLongArrowAltLeft, faLongArrowAltRight, faPlus, faMinus, faExpand } from '@fortawesome/free-solid-svg-icons'
+import { faLongArrowAltLeft, faLongArrowAltRight, faPlus, faMinus, faExpand, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faLongArrowAltLeft)
 library.add(faLongArrowAltRight)
 library.add(faPlus)
 library.add(faMinus)
 library.add(faExpand)
+library.add(faQuestionCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // Localization support
@@ -34,6 +35,11 @@ Vue.use(Toasted, {
 // Import vue-textarea-autosize
 import TextareaAutosize from 'vue-textarea-autosize'
 Vue.use(TextareaAutosize)
+
+// Use tooltip directive
+import VTooltip from 'v-tooltip'
+Vue.use(VTooltip)
+import './assets/tooltips.scss'
 
 new Vue({
   render: h => h(App),

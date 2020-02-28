@@ -5,34 +5,34 @@
         <div class="col-sm-4" v-viewer="'date'">
           <h4>{{$t('editor.date.title')}}</h4>
           <div class="row narrow">
-            <div class="col-sm-4 form-group">
-              <label for="year">{{$t('editor.date.year')}}</label>
+            <div class="col-sm-4 form-group" >
+              <help-label for="year" :text="$t('editor.date.year')" :tip="$t('editor.date.year_tip')" />
               <input id="year" v-model.number="c.date.year" @change="checkNumber" min="0" max="2020" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 form-group">
-              <label for="month">{{$t('editor.date.month')}}</label>
+              <help-label for="month" :text="$t('editor.date.month')" :tip="$t('editor.date.month_tip')" />
               <month-input id="month" v-model.number="c.date.month" />
             </div>
             <div class="col-sm-4 form-group">
-              <label for="day">{{$t('editor.date.day')}}</label>
+              <help-label for="day" :text="$t('editor.date.day')" :tip="$t('editor.date.day_tip')" />
               <input id="day" v-model.number="c.date.day" @change="checkNumber" min="1" max="31" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
-              <label for="year_b">{{$t('editor.date.year')}} B</label>
+              <help-label for="year_b" :text="$t('editor.date.year_b')" :tip="$t('editor.date.year_b_tip')" />
               <input id="year_b" v-model.number="c.date.year_b" @change="checkNumber" min="0" max="2020" type="number" @mousewheel.prevent class="form-control" />
             </div>
             <div class="col-sm-4 from-group">
-              <label for="month_b">{{$t('editor.date.month')}} B</label>
+              <help-label for="month_b" :text="$t('editor.date.month_b')" :tip="$t('editor.date.month_b_tip')" />
               <month-input id="month_b" v-model.number="c.date.month_b" />
             </div>
             <div class="col-sm-4 grom-group">
-              <label for="day_b">{{$t('editor.date.day')}} B</label>
+              <help-label for="day_b" :text="$t('editor.date.day_b')" :tip="$t('editor.date.day_b_tip')" />
               <input id="day_b" v-model.number="c.date.day_b" @change="checkNumber" min="1" max="31" type="number" @mousewheel.prevent class="form-control" />
             </div>
           </div>
-          <label for="date_remarks">{{$t('editor.date.remarks')}}</label>
+          <help-label for="date_remarks" :text="$t('editor.date.remarks')" :tip="$t('editor.date.remarks_tip')" />
           <!-- <input id="date_remarks" v-model="c.date.remarks" type="text" class="form-control" /> -->
           <collapse-input id="date_remarks" v-model="c.date.remarks" />
         </div>
@@ -57,17 +57,17 @@
         <div class="col-sm-4" v-viewer="'autograph'">
           <h4>{{$t('editor.autograph.title')}}</h4>
           <div class="form-group">
-            <label for="autograph_location">{{$t('editor.autograph.location')}}</label>
+            <help-label for="autograph_location" :text="$t('editor.autograph.location')" :tip="$t('editor.autograph.location_tip')" />
             <!-- <input id="autograph_location" v-model="c.autograph.location" type="text" class="form-control" /> -->
             <!-- <select-or-other :options='locationProposals.autograph' v-model="c.autograph.location" /> -->
             <typeahead v-model="c.autograph.location" id="autograph_location" :proposals="locationProposals.autograph" :maxMatches="50" :minMatchingChars="0" :hideEqual="true" />
           </div>
           <div class="form-group">
-            <label for="autograph_signature">{{$t('editor.autograph.signature')}}</label>
+            <help-label for="autograph_signature" :text="$t('editor.autograph.signature')" :tip="$t('editor.autograph.signature_tip')" />
             <input id="autograph_signature" v-model="c.autograph.signature" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="autograph_remarks">{{$t('editor.autograph.remarks')}}</label>
+            <help-label for="autograph_remarks" :text="$t('editor.autograph.remarks')" :tip="$t('editor.autograph.remarks_tip')" />
             <!-- <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" /> -->
             <collapse-input id="autograph_remarks" v-model="c.autograph.remarks" />
           </div>
@@ -75,17 +75,17 @@
         <div class="col-sm-4" v-viewer="'copy'">
           <h4>{{$t('editor.copy.title')}}</h4>
           <div class="form-group">
-            <label for="copy_location">{{$t('editor.copy.location')}}</label>
+            <help-label for="copy_location" :text="$t('editor.copy.location')" :tip="$t('editor.copy.location_tip')" />
             <!-- <input id="copy_location" v-model="c.copy.location" type="text" class="form-control" /> -->
             <!-- <select-or-other :options='locationProposals.copy' v-model="c.copy.location" /> -->
             <typeahead v-model="c.copy.location" id="copy_location" :proposals="locationProposals.copy" :maxMatches="50"  :minMatchingChars="0" :hideEqual="true" />
           </div>
           <div class="form-group">
-            <label for="copy_signature">{{$t('editor.copy.signature')}}</label>
+            <help-label for="copy_signature" :text="$t('editor.copy.signature')" :tip="$t('editor.copy.signature_tip')" />
             <input id="copy_signature" v-model="c.copy.signature" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="copy_remarks">{{$t('editor.copy.remarks')}}</label>
+            <help-label for="copy_remarks" :text="$t('editor.copy.remarks')" :tip="$t('editor.copy.remarks_tip')" />
             <!-- <input id="copy_remarks" v-model="c.copy.remarks" type="text" class="form-control" /> -->
             <collapse-input id="copy_remarks" v-model="c.copy.remarks" />
           </div>
@@ -94,25 +94,25 @@
       <!-- <h4>{{$t('editor.contents.title')}}</h4> -->
       <div class="row">
         <div class="col-sm-4 form-group" v-viewer="'language'">
-          <label for="language">{{$t('editor.contents.language')}}</label>
+          <help-label for="language" :text="$t('editor.contents.language')" :tip="$t('editor.contents.language_tip')" />
           <!-- <input id="language" v-model="c.language" type="text" class="form-control" /> -->
           <typeahead v-model="c.language" id="language" :proposals="[ 'Latein', 'Deutsch', 'Griechisch', 'Französisch' ]" :minMatchingChars="0" :hideEqual="true" />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'printed'">
-          <label for="printed">{{$t('editor.contents.printed')}}</label>
+          <help-label for="printed" :text="$t('editor.contents.printed')" :tip="$t('editor.contents.printed_tip')" />
           <collapse-input id="printed" v-model="c.printed" />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'literature'">
-          <label for="literature">{{$t('editor.contents.literature')}}</label>
+          <help-label for="literature" :text="$t('editor.contents.literature')" :tip="$t('editor.contents.literature_tip')" />
           <collapse-input id="literature" v-model="c.literature" />
         </div>
       </div>
       <div class="form-group" v-viewer="'first_sentence'">
-        <label for="first_sentence">{{$t('editor.contents.first_sentence')}}</label>
+        <help-label for="first_sentence" :text="$t('editor.contents.first_sentence')" :tip="$t('editor.contents.first_sentence_tip')" />
         <textarea-autosize id="first_sentence" spellcheck="false" v-model="c.first_sentence" class="form-control"></textarea-autosize>
       </div>
       <div class="form-group">
-        <label for="remarks">{{$t('editor.contents.remarks')}}</label>
+        <help-label for="remarks" :text="$t('editor.contents.remarks')" :tip="$t('editor.contents.remarks_tip')" />
         <textarea-autosize id="remarks" spellcheck="false" v-model="c.remarks" class="form-control"></textarea-autosize>
       </div>
       <div class="card-actions" style="">
@@ -154,6 +154,7 @@ import CollapseInput from './CollapseInput'
 import states from '../services/states'
 import locationProposals from '../services/location-proposals'
 import Typeahead from './Typeahead'
+import HelpLabel from './HelpLabel'
 
 export default {
   name: 'CardEditor',
@@ -174,7 +175,7 @@ export default {
     }
   },
   components: {
-    MonthInput, PersonEditor, CollapseInput, Typeahead
+    MonthInput, PersonEditor, CollapseInput, Typeahead, HelpLabel
   },
   mounted() {
   },
