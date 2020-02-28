@@ -1,6 +1,6 @@
 <template>
   <div class="bu-person-editor">
-    <div class="row narrow">
+    <div class="row narrow" :class="{'has-image': value.firstname == 'Heinrich' && value.lastname == 'Bullinger'}">
       <div class="col-sm-6 form-group">
           <help-label :for="id + '_lastname'" :text="$t(`editor.${id}.lastname`)" :tip="$t(`editor.${id}.lastname_tip`)" />
           <!-- <input :id="id + '_lastname'" v-model="value.lastname" type="text" class="form-control" /> -->
@@ -17,6 +17,9 @@
       <div class="col-sm-6 form-group">
         <help-label :for="id + '_firstname'" :text="$t(`editor.${id}.firstname`)" :tip="$t(`editor.${id}.firstname_tip`)" />
         <input :id="id + '_firstname'" v-model="value.firstname" type="text" class="form-control" />
+      </div>
+      <div class="bu-person-image" v-if="value.firstname == 'Heinrich' && value.lastname == 'Bullinger'">
+        <img :src="tempImageUrl" />
       </div>
     </div>
     <div class="row narrow">
@@ -52,7 +55,8 @@ export default {
   props: [ 'value', 'id' ],
   data() {
     return {
-      proposals: []
+      proposals: [],
+      tempImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Heinrich_Bullinger.jpg/220px-Heinrich_Bullinger.jpg'
     }
   },
   computed: {
@@ -82,4 +86,7 @@ export default {
 
 <style lang="scss">
 .bu-person-editor .vbt-autcomplete-list { width:200%!important; }
+.bu-person-editor .has-image { display:block; position:relative; }
+.bu-person-image { position:absolute; top:-30px; right:0; width:48%; max-height:calc(100% + 30px); overflow:hidden; }
+.bu-person-image > img { width:100%; display:block; }
 </style>
