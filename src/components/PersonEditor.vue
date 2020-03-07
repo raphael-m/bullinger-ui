@@ -19,7 +19,9 @@
         <input :id="id + '_firstname'" v-model="value.firstname" type="text" class="form-control" />
       </div>
       <div class="bu-person-image" v-if="wikiData.photo_url">
-        <img :src="wikiData.photo_url" />
+        <a :href="wikiData.wiki_url" target="_blank">
+          <img :src="wikiData.photo_url" />
+        </a>
       </div>
     </div>
     <div class="row narrow">
@@ -110,5 +112,5 @@ export default {
 .bu-person-editor .vbt-autcomplete-list { width:200%!important; }
 .bu-person-editor .has-image { display:block; position:relative; }
 .bu-person-image { position:absolute; top:-30px; right:0; width:48%; max-height:calc(100% + 30px); overflow:hidden; }
-.bu-person-image > img { width:100%; display:block; }
+.bu-person-image img { width:100%; display:block; }
 </style>
