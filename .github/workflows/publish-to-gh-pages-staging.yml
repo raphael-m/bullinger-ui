@@ -1,0 +1,30 @@
+name: Deploy to GitHub Pages (Staging)
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        ref: master
+    
+    - name: Build
+      run: |
+        yarn install
+        export NODE_ENV=staging
+        yarn run build
+        cd dist
+        echo 'bullinger.raphaelm.ch' > CNAME
+        cd ..
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: dist
+        TARGET_FOLDER: staging
