@@ -1,6 +1,6 @@
 <template>
   <div class="bu-person-editor">
-    <div class="row narrow" :class="{'has-image': value.firstname == 'Heinrich' && value.lastname == 'Bullinger'}">
+    <div class="row narrow" :class="{'has-image': wikiData.photo_url }">
       <div class="col-sm-6 form-group">
           <help-label :for="id + '_lastname'" :text="$t(`editor.${id}.lastname`)" :tip="$t(`editor.${id}.lastname_tip`)" />
           <!-- <input :id="id + '_lastname'" v-model="value.lastname" type="text" class="form-control" /> -->
@@ -18,8 +18,8 @@
         <help-label :for="id + '_firstname'" :text="$t(`editor.${id}.firstname`)" :tip="$t(`editor.${id}.firstname_tip`)" />
         <input :id="id + '_firstname'" v-model="value.firstname" type="text" class="form-control" />
       </div>
-      <div class="bu-person-image" v-if="value.firstname == 'Heinrich' && value.lastname == 'Bullinger'">
-        <img :src="tempImageUrl" />
+      <div class="bu-person-image" v-if="wikiData.photo_url">
+        <img :src="wikiData.photo_url" />
       </div>
     </div>
     <div class="row narrow">
@@ -56,18 +56,40 @@ export default {
   data() {
     return {
       proposals: [],
-      tempImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Heinrich_Bullinger.jpg/220px-Heinrich_Bullinger.jpg'
+      wikiData: {}
     }
   },
   computed: {
+    personIdentifier() {
+      return `${encodeURIComponent(this.value.lastname)}/${encodeURIComponent(this.value.firstname)}/${encodeURIComponent(this.value.location)}`;
+    } 
   },
   async mounted() {
     this.$refs.typeahead.inputValue = this.value.lastname;
     this.proposals = (await axios.get('/api/persons')).data;
+    this.refreshWikiData();
   },
   watch: {
+    personIdentifier() {
+      this.refreshWikiData();
+    }
   },
   methods: {
+    async refreshWikiData() {
+      if(this.value.lastname && this.value.firstname && this.value.location) {
+        try {
+          let result = (await axios.get(`/api/wiki_data/${this.personIdentifier}`)).data;
+          this.wikiData = result;
+        }
+        catch(e) {
+          console.log(e);
+          this.wikiData = {};
+        }
+      }
+      else {
+        this.wikiData = {};
+      }
+    },
     proposalSelected(proposal) {
       // Workaround for setting the input value: https://stackoverflow.com/a/53512501/496950
       this.$refs.typeahead.inputValue = proposal.lastname;
