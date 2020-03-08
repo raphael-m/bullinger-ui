@@ -84,7 +84,6 @@ export default {
           this.wikiData = result;
         }
         catch(e) {
-          console.log(e);
           this.wikiData = {};
         }
       }
