@@ -118,7 +118,7 @@
       <div class="card-actions" style="">
         <div class="form-group form-inline">
           <!-- <label for="status">{{$t('editor.state.label')}}:</label> -->
-          <help-label for="status" :text="$t('editor.state.label')" :tip="$t('editor.state_tip')" />
+          <help-label for="status" :text="$t('editor.state.label')" :tip="$t('editor.state_tip')" tip-classes="state-tip" />
           <!-- <select id="status" class="form-control" v-model="card.state">
             <option :value="states.open">{{$t('editor.state.open')}}</option>
             <option :value="states.unclear">{{$t('editor.state.unclear')}}</option>
@@ -261,5 +261,8 @@ export default {
     .card-actions label .fa-question-circle { font-size:12px; opacity: 0.34; margin-left:3px; }
     input::placeholder { color:#BABABA }
 
+    
   }
+
+  .state-tip .tooltip-inner { max-width:400px; }
 </style>
