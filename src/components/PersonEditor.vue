@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     personIdentifier() {
-      return `${encodeURIComponent(this.value.lastname)}/${encodeURIComponent(this.value.firstname)}/${encodeURIComponent(this.value.location)}`;
+      return `${encodeURIComponent(this.value.lastname)}/${encodeURIComponent(this.value.firstname)}`;
     } 
   },
   async mounted() {
