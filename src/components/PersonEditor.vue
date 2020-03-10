@@ -1,6 +1,6 @@
 <template>
   <div class="bu-person-editor">
-    <div class="row narrow" :class="{'has-image': wikiData.photo_url }">
+    <div class="row narrow">
       <div class="col-sm-6 form-group">
           <help-label :for="id + '_lastname'" :text="$t(`editor.${id}.lastname`)" :tip="$t(`editor.${id}.lastname_tip`)" />
           <!-- <input :id="id + '_lastname'" v-model="value.lastname" type="text" class="form-control" /> -->
@@ -19,7 +19,7 @@
         <input :id="id + '_firstname'" v-model="value.firstname" type="text" class="form-control" />
       </div>
       <div class="bu-person-image" v-if="wikiData.photo_url">
-        <a :href="wikiData.wiki_url" target="_blank">
+        <a :href="wikiData.wiki_url" target="_blank" tabindex="-1">
           <img :src="wikiData.photo_url" />
         </a>
       </div>
@@ -109,7 +109,7 @@ export default {
 
 <style lang="scss">
 .bu-person-editor .vbt-autcomplete-list { width:200%!important; }
-.bu-person-editor .has-image { display:block; position:relative; }
-.bu-person-image { position:absolute; top:-30px; right:0; width:48%; max-height:calc(100% + 30px); overflow:hidden; }
+.bu-person-editor { position:relative; }
+.bu-person-image { position:absolute; top:-30px; right:0; max-width:45px; max-height:calc((100% + 0px) * 0.25); overflow:hidden; }
 .bu-person-image img { width:100%; display:block; }
 </style>
