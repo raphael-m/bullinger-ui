@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label :for="id + '_remarks'">{{$t(`editor.${id}.remarks`)}}</label>
+      <help-label :for="id + '_remarks'" :text="$t(`editor.${id}.remarks`)" :tip="$t(`editor.${id}.remarks_tip`)" />
       <!-- <input :id="id + '_remarks'" v-model="value.remarks" type="text" class="form-control" /> -->
       <collapse-input :id="id + '_remarks'" v-model="value.remarks" />
     </div>
