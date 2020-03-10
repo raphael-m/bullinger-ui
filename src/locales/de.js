@@ -99,10 +99,10 @@ export default {
         },
         state_tip: `Status bezieht sich darauf, ob Datenbankeintrag und Karteikarte vollständig übereinstimmen. Wählen Sie den Status
             <ul>
-                <li>"Offen", wenn der Datenbankeintrag noch nicht kontrolliert / korrigiert ist</li>
-                <li>"Unklar", wenn der Datenbankeintrag korrigiert ist, jedoch Unsicherheiten bestehen (diese bitte im Bemerkungsfeld spezifizieren)</li>
-                <li>"Ungültig", wenn das Bild keine Karteikarte zeigt oder die Karteikarte leer ist</li>
-                <li>"Abgeschlossen", wenn der Datenbankeintrag vollständig kontrolliert und korrigiert ist, d.h. die Einträge in der Datenbank den Einträgen auf der Karteikarte entsprechen</li>
+                <li><strong>"Offen"</strong>, wenn der Datenbankeintrag noch nicht kontrolliert / korrigiert ist</li>
+                <li><strong>"Unklar"</strong>, wenn der Datenbankeintrag korrigiert ist, jedoch Unsicherheiten bestehen (diese bitte im Bemerkungsfeld spezifizieren)</li>
+                <li><strong>"Ungültig"</strong>, wenn das Bild keine Karteikarte zeigt oder die Karteikarte leer ist</li>
+                <li><strong>"Abgeschlossen"</strong>, wenn der Datenbankeintrag vollständig kontrolliert und korrigiert ist, d.h. die Einträge in der Datenbank den Einträgen auf der Karteikarte entsprechen</li>
             </ul>
             `,
         save: 'Speichern',
