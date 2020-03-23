@@ -25,9 +25,9 @@ export default {
             month_b: 'Monat B',
             month_b_tip: 'Sofern Anfangs- und Enddaten angegeben sind: Zweiter Monatsname',
             day: 'Tag',
-            day_tip: 'Zweistellige Datumsangabe',
+            day_tip: 'Datumsangabe',
             day_b: 'Tag B',
-            day_b_tip: 'Sofern Anfangs- und Enddaten angegeben sind: Zweite Datumsangabe (zweistellig)',
+            day_b_tip: 'Sofern Anfangs- und Enddaten angegeben sind: Zweite Datumsangabe',
             remarks: 'Bemerkung (Datum)',
             remarks_tip: 'Steht das Datum auf der Karteikarte in Klammern oder ist mit einer lat. Abkürzung wie "s.d." oder "s.a." versehen, tragen Sie hier "Datum unsicher" ein'
         },
