@@ -217,7 +217,13 @@
             :text="$t('editor.contents.printed')"
             :tip="$t('editor.contents.printed_tip')"
           />
-          <collapse-input id="printed" v-model="c.printed" />
+          <typeahead-collapse-input
+            id="printed"
+            v-model="c.printed"
+            :proposals="['Test', 'Test2']"
+            :minMatchingChars="0"
+            :hideEqual="true"
+          />
         </div>
         <div class="col-sm-4 form-group" v-viewer="'literature'">
           <help-label

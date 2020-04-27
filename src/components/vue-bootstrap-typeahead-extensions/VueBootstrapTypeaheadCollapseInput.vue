@@ -10,10 +10,10 @@
         :id="id"
         ref="collapseInput"
         :type="type"
-        :class="`form-control ${inputClass}`"
+        :class="` ${inputClass}`"
         :placeholder="placeholder"
         :aria-label="placeholder"
-        :value="value"
+        :value="inputValue"
         @focus="isFocused = true"
         @blur="handleBlur"
         @input="handleInput"
@@ -115,7 +115,7 @@ export default {
   },
   computed: {
     sizeClasses() {
-      return this.size ? `input-group input-group-${this.size}` : "input-group";
+      return ""; // this.size ? `input-group input-group-${this.size}` : "input-group";
     },
     formattedData() {
       if (!(this.data instanceof Array)) {
