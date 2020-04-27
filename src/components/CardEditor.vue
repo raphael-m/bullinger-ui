@@ -173,6 +173,7 @@
               :maxMatches="50"
               :minMatchingChars="0"
               :hideEqual="true"
+              @input="locationChanged"
             />
           </div>
           <div class="form-group">
@@ -391,6 +392,10 @@ export default {
         t.value = t.max;
         t.dispatchEvent(new Event("input"));
       }
+    },
+    locationChanged() {
+      // If Zürich ZB is selected for the location (copy), we reset the signature because the OCR value is wrong in many cases
+      if (this.c.copy.location === "Zürich ZB") this.c.copy.signature = "Ms S ";
     }
   },
   directives: {
