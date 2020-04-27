@@ -1,6 +1,6 @@
 export default {
-  open: 'offen',
-  unclear: 'unklar',
-  invalid: 'ungültig',
-  done: 'abgeschlossen'
-}
+  open: "offen",
+  unclear: "unklar",
+  invalid: "ungültig",
+  done: "abgeschlossen"
+};

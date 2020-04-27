@@ -9,34 +9,38 @@
     :minMatchingChars="minMatchingChars"
     :maxMatches="maxMatches"
     type="text"
-    :hideEqual="hideEqual">
+    :hideEqual="hideEqual"
+  >
   </vue-bootstrap-typeahead>
 </template>
 
 <script>
-import VueBootstrapTypeahead from './vue-bootstrap-typeahead/VueBootstrapTypeahead'
+import VueBootstrapTypeahead from "./vue-bootstrap-typeahead/VueBootstrapTypeahead";
 
 /**
 A component which allows selecting / entering recievers and senders
  */
 export default {
-  name: 'Typeahead',
+  name: "Typeahead",
   props: {
     value: { type: String, default: "" },
     proposals: { type: Array, default: () => [] },
-    serializer: { type: Function, default: (v) => v },
+    serializer: { type: Function, default: v => v },
     maxMatches: { type: Number, default: 10 },
     minMatchingChars: { type: Number, default: 2 },
     hideEqual: { type: Boolean, default: false }
   },
   data() {
-    return {
-    }
+    return {};
   },
   computed: {
     internalValue: {
-      get(){ return this.value },
-      set(v){ this.$emit('input', v) }
+      get() {
+        return this.value;
+      },
+      set(v) {
+        this.$emit("input", v);
+      }
     }
   },
   async mounted() {
@@ -57,9 +61,11 @@ export default {
   components: {
     VueBootstrapTypeahead
   }
-}
+};
 </script>
 
 <style lang="scss">
-.bu-person-editor .vbt-autcomplete-list { width:200%!important; }
+.bu-person-editor .vbt-autcomplete-list {
+  width: 200% !important;
+}
 </style>
