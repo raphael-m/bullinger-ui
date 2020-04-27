@@ -1,13 +1,14 @@
 <template>
   <div>
     <textarea-autosize
+      ref="input"
       :id="id"
       v-model="inputValue"
       class="form-control"
       :min-height="38"
       :class="{ unfocused: !focused }"
-      @blur.native="focused = false"
-      @focus.native="focused = true"
+      @blur.native="focused = false; $emit('blur', $event)"
+      @focus.native="focused = true; $emit('focus', $event)"
     />
   </div>
 </template>

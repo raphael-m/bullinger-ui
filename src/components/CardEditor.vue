@@ -31,11 +31,7 @@
               <month-input id="month" v-model.number="c.date.month" />
             </div>
             <div class="col-sm-4 form-group">
-              <help-label
-                for="day"
-                :text="$t('editor.date.day')"
-                :tip="$t('editor.date.day_tip')"
-              />
+              <help-label for="day" :text="$t('editor.date.day')" :tip="$t('editor.date.day_tip')" />
               <input
                 id="day"
                 v-model.number="c.date.day"
@@ -157,10 +153,7 @@
               :tip="$t('editor.autograph.remarks_tip')"
             />
             <!-- <input id="autograph_remarks" v-model="c.autograph.remarks" type="text" class="form-control" /> -->
-            <collapse-input
-              id="autograph_remarks"
-              v-model="c.autograph.remarks"
-            />
+            <collapse-input id="autograph_remarks" v-model="c.autograph.remarks" />
           </div>
         </div>
         <div class="col-sm-4" v-viewer="'copy'">
@@ -188,12 +181,7 @@
               :text="$t('editor.copy.signature')"
               :tip="$t('editor.copy.signature_tip')"
             />
-            <input
-              id="copy_signature"
-              v-model="c.copy.signature"
-              type="text"
-              class="form-control"
-            />
+            <input id="copy_signature" v-model="c.copy.signature" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <help-label
@@ -237,7 +225,13 @@
             :text="$t('editor.contents.literature')"
             :tip="$t('editor.contents.literature_tip')"
           />
-          <collapse-input id="literature" v-model="c.literature" />
+          <typeahead-collapse-input
+            id="literature"
+            v-model="c.literature"
+            :proposals="['Test']"
+            :minMatchingChars="0"
+            :hideEqual="true"
+          />
         </div>
       </div>
       <div class="form-group" v-viewer="'first_sentence'">
@@ -259,14 +253,9 @@
           :text="$t('editor.contents.remarks')"
           :tip="$t('editor.contents.remarks_tip')"
         />
-        <textarea-autosize
-          id="remarks"
-          spellcheck="false"
-          v-model="c.remarks"
-          class="form-control"
-        ></textarea-autosize>
+        <textarea-autosize id="remarks" spellcheck="false" v-model="c.remarks" class="form-control"></textarea-autosize>
       </div>
-      <div class="card-actions" style="">
+      <div class="card-actions" style>
         <div class="form-group form-inline">
           <!-- <label for="status">{{$t('editor.state.label')}}:</label> -->
           <help-label
@@ -281,7 +270,7 @@
             <option :value="states.unclear">{{$t('editor.state.unclear')}}</option>
             <option :value="states.invalid">{{$t('editor.state.invalid')}}</option>
             <option :value="states.done">{{$t('editor.state.done')}}</option>
-          </select> -->
+          </select>-->
           <div
             class="custom-control custom-radio custom-control-inline"
             v-for="s in ['open', 'unclear', 'invalid', 'done']"
@@ -294,9 +283,11 @@
               :value="states[s]"
               v-model="card.state"
             />
-            <label class="custom-control-label" :for="'status_' + s">{{
+            <label class="custom-control-label" :for="'status_' + s">
+              {{
               $t("editor.state." + s)
-            }}</label>
+              }}
+            </label>
           </div>
 
           <!-- <span v-for="s in ['open', 'unclear', 'invalid', 'done']" :key="s" class="badge badge-danger">{{$t('editor.state.' + s)}}</span> -->
@@ -307,16 +298,12 @@
               @click="save_reload"
               type="button"
               class="btn btn-secondary btn-save"
-            >
-              {{ $t("editor.save") }}
-            </button>
+            >{{ $t("editor.save") }}</button>
             <button
               @click="save_go"
               type="button"
               class="btn btn-primary btn-save-go"
-            >
-              {{ $t("editor.save_next") }}
-            </button>
+            >{{ $t("editor.save_next") }}</button>
           </div>
         </div>
       </div>
@@ -336,6 +323,7 @@ import CollapseInput from "./CollapseInput";
 import states from "../services/states";
 import locationProposals from "../services/location-proposals";
 import Typeahead from "./Typeahead";
+import TypeaheadCollapseInput from "./TypeaheadCollapseInput";
 import HelpLabel from "./HelpLabel";
 
 export default {
@@ -361,6 +349,7 @@ export default {
     PersonEditor,
     CollapseInput,
     Typeahead,
+    TypeaheadCollapseInput,
     HelpLabel
   },
   mounted() {},
