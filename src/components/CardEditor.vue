@@ -395,7 +395,11 @@ export default {
     },
     locationChanged() {
       // If Zürich ZB is selected for the location (copy), we reset the signature because the OCR value is wrong in many cases
-      if (this.c.copy.location === "Zürich ZB") this.c.copy.signature = "Ms S ";
+      if (
+        this.c.copy.location === "Zürich ZB" &&
+        this.c.copy.signature.indexOf("Ms S") === -1
+      )
+        this.c.copy.signature = "Ms S ";
     }
   },
   directives: {
