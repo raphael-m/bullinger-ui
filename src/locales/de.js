@@ -10,10 +10,10 @@ export default {
       open: "offen",
       unclear: "unklar",
       done: "abgeschlossen",
-      invalid: "ungültig"
+      invalid: "ungültig",
     },
     digital_intro:
-      "Prüfen Sie die angezeigten Werte mit den Angaben auf der originalen Karteikarte."
+      "Prüfen Sie die angezeigten Werte mit den Angaben auf der originalen Karteikarte.",
   },
   editor: {
     date: {
@@ -23,19 +23,26 @@ export default {
       year_b: "Jahr B",
       year_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweite Jahreszahl (vierstellig) ohne Klammern",
+      year_linked: "Jahr V",
+      year_linked_tip:
+        "Jahreszahl der Verweiskarte, falls vorhanden (vierstellig)",
       month: "Monat",
       month_tip: "Monatsname",
       month_b: "Monat B",
       month_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweiter Monatsname",
+      month_linked: "Monat V",
+      month_linked_tip: "Monatsname der Verweiskarte, falls vorhanden",
       day: "Tag",
       day_tip: "Datumsangabe",
       day_b: "Tag B",
       day_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweite Datumsangabe",
+      day_linked: "Tag V",
+      day_linked_tip: "Datumsangabe der Verweiskarte, falls vorhanden",
       remarks: "Bemerkung (Datum)",
       remarks_tip:
-        'Steht das Datum auf der Karteikarte in Klammern oder ist mit einer lat. Abkürzung wie "s.d." oder "s.a." versehen, tragen Sie hier "Datum unsicher" ein'
+        'Steht das Datum auf der Karteikarte in Klammern oder ist mit einer lat. Abkürzung wie "s.d." oder "s.a." versehen, tragen Sie hier "Datum unsicher" ein',
     },
     sender: {
       title: "Absender",
@@ -53,7 +60,7 @@ export default {
         "Feld ankreuzen, sofern eine Angabe zum Absender in Klammern steht",
       remarks: "Bemerkung (Absender)",
       remarks_tip:
-        'Stehen mehrere Absender auf der Karteikarte, tragen Sie hier "Mehrere Absender" ein.<br>Haben Sie Schreibvarianten festgestellt oder sind Sie unsicher, ob ein Schreibfehler vorliegt, tragen Sie die entsprechende Bemerkung ein und setzen den Status auf "Unklar".'
+        'Stehen mehrere Absender auf der Karteikarte, tragen Sie hier "Mehrere Absender" ein.<br>Haben Sie Schreibvarianten festgestellt oder sind Sie unsicher, ob ein Schreibfehler vorliegt, tragen Sie die entsprechende Bemerkung ein und setzen den Status auf "Unklar".',
     },
     receiver: {
       title: "Empfänger",
@@ -71,7 +78,7 @@ export default {
         "Feld ankreuzen, sofern eine Angabe zum Empfänger in Klammern steht",
       remarks: "Bemerkung (Empfänger)",
       remarks_tip:
-        'Stehen mehrere Empfänger auf der Karteikarte, tragen Sie hier "Mehrere Empfänger" ein.<br>Haben Sie Schreibvarianten festgestellt oder sind Sie unsicher, ob ein Schreibfehler vorliegt, tragen Sie die entsprechende Bemerkung ein und setzen den Status auf "Unklar".'
+        'Stehen mehrere Empfänger auf der Karteikarte, tragen Sie hier "Mehrere Empfänger" ein.<br>Haben Sie Schreibvarianten festgestellt oder sind Sie unsicher, ob ein Schreibfehler vorliegt, tragen Sie die entsprechende Bemerkung ein und setzen den Status auf "Unklar".',
     },
     autograph: {
       title: "Autograph",
@@ -83,7 +90,7 @@ export default {
         "Buchstabenfolgen sind mit Leerschlägen zu trennen, Zahlen mit Kommas (für Beispiele s. FAQ)",
       remarks: "Bemerkung (Autograph)",
       remarks_tip:
-        'Sind Sie unsicher, ob Sie die Angaben richtig entziffert haben, tragen Sie hier bitte die entsprechende Bemerkung ein und setzen den Status der Karteikarte auf "Unklar"'
+        'Sind Sie unsicher, ob Sie die Angaben richtig entziffert haben, tragen Sie hier bitte die entsprechende Bemerkung ein und setzen den Status der Karteikarte auf "Unklar"',
     },
     copy: {
       title: "Kopie",
@@ -94,7 +101,7 @@ export default {
         "Buchstabenfolgen sind mit Leerschlägen zu trennen, Zahlen mit Kommas (für Beispiele s. FAQ)",
       remarks: "Bemerkung (Kopie)",
       remarks_tip:
-        'Sind Sie unsicher, ob Sie die Angaben richtig entziffert haben, tragen Sie hier bitte die entsprechende Bemerkung ein und setzen den Status auf "Unklar"'
+        'Sind Sie unsicher, ob Sie die Angaben richtig entziffert haben, tragen Sie hier bitte die entsprechende Bemerkung ein und setzen den Status auf "Unklar"',
     },
     contents: {
       title: "Inhalt",
@@ -112,14 +119,14 @@ export default {
         'Erster Satz gemäss Karteikarte. Können Sie den Eintrag nicht entziffern, tragen Sie dies bitte in den Anmerkungen zur Karteikarte ein und setzen den Status auf "Unklar"',
       remarks: "Anmerkungen / Notiz zu dieser Karteikarte",
       remarks_tip:
-        'Falls Sie bei einer Korrektur unsicher sind oder einen Eintrag nicht entziffern konnten, tragen Sie dies bitte hier ein und setzen den Status auf "Unklar"'
+        'Falls Sie bei einer Korrektur unsicher sind oder einen Eintrag nicht entziffern konnten, tragen Sie dies bitte hier ein und setzen den Status auf "Unklar"',
     },
     state: {
       label: "Status",
       open: "Offen",
       unclear: "Unklar",
       invalid: "Ungültig",
-      done: "Abgeschlossen"
+      done: "Abgeschlossen",
     },
     state_tip: `Status bezieht sich darauf, ob Datenbankeintrag und Karteikarte vollständig übereinstimmen. Wählen Sie den Status
             <ul>
@@ -133,7 +140,7 @@ export default {
     save_next: "Speichern und weiter",
     save_success: "Karteikarte ({id}) erfolgreich gespeichert.",
     save_error:
-      "Beim Speichern ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+      "Beim Speichern ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
   },
   viewer: {
     zoom: "Zoom",
@@ -142,12 +149,12 @@ export default {
       "Wenn diese Funktion aktiviert ist, wird beim Fokussieren eines Textfeldes in der digitalen Karteikarte automatisch der entsprechende Aussschnitt in der originalen Karteikarte fokussiert.",
     zoom_in: "Vergrössern",
     zoom_out: "Verkleinern",
-    zoom_full: "Ganze Karteikarte anzeigen"
+    zoom_full: "Ganze Karteikarte anzeigen",
   },
   navigation: {
     previous_card: "Vorherige Karte",
     next_card: "Nächste Karte",
     overview: "Übersicht",
-    current: "Aktuelle Karte"
-  }
+    current: "Aktuelle Karte",
+  },
 };

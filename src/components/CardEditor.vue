@@ -3,7 +3,68 @@
     <form @submit="save_reload">
       <div class="row">
         <div class="col-sm-4" v-viewer="'date'">
-          <h4>{{ $t("editor.date.title") }}</h4>
+          <div style="position:relative;">
+            <h4>{{ $t("editor.date.title") }}</h4>
+            <div style="position:absolute; right:0; top:0;">
+              <help-label
+                :for="'is_linked_card'"
+                :text="'Verweiskarte'"
+                :tip="'Aktivieren Sie diese Option, wenn es sich um eine Karteikarte handelt, welche auf eine andere Karte verweist. Wenn diese Option aktiviert wird, kann ein zusätzliches Datum für die Karte eingetragen werden, auf die die aktuelle Karte verweist.'"
+                style="display:inline-block;"
+              />
+              <input
+                :id="'is_linked_card'"
+                v-model="c.is_linked"
+                type="checkbox"
+                class="form-control"
+                style="display:inline-block; width:auto; line-height:0; height: auto; margin-left:10px;"
+              />
+            </div>
+          </div>
+          <div class="row narrow" v-show="c.is_linked">
+            <div class="col-sm-4 form-group">
+              <help-label
+                for="year_linked"
+                :text="$t('editor.date.year_linked')"
+                :tip="$t('editor.date.year_linked_tip')"
+              />
+              <input
+                id="year_linked"
+                v-model.number="c.date_linked.year"
+                @change="checkNumber"
+                min="0"
+                max="2020"
+                type="number"
+                @mousewheel.prevent
+                class="form-control"
+              />
+            </div>
+            <div class="col-sm-4 form-group">
+              <help-label
+                for="month_linked"
+                :text="$t('editor.date.month_linked')"
+                :tip="$t('editor.date.month_linked_tip')"
+              />
+              <month-input id="month_linked" v-model.number="c.date_linked.month" />
+            </div>
+            <div class="col-sm-4 form-group">
+              <help-label
+                for="day_linked"
+                :text="$t('editor.date.day_linked')"
+                :tip="$t('editor.date.day_linked_tip')"
+              />
+              <input
+                id="day_linked"
+                v-model.number="c.date_linked.day"
+                @change="checkNumber"
+                min="1"
+                max="31"
+                type="number"
+                @mousewheel.prevent
+                class="form-control"
+              />
+            </div>
+          </div>
           <div class="row narrow">
             <div class="col-sm-4 form-group">
               <help-label
