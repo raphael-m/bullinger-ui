@@ -221,7 +221,7 @@
           <typeahead-collapse-input
             id="printed"
             v-model="c.printed"
-            :proposals="['Test', 'Test2']"
+            :proposals="printedProposals"
             :minMatchingChars="0"
             :hideEqual="true"
           />
@@ -235,7 +235,7 @@
           <typeahead-collapse-input
             id="literature"
             v-model="c.literature"
-            :proposals="['Test']"
+            :proposals="literatureProposals"
             :minMatchingChars="0"
             :hideEqual="true"
           />
@@ -329,6 +329,8 @@ import PersonEditor from "./PersonEditor";
 import CollapseInput from "./CollapseInput";
 import states from "../services/states";
 import locationProposals from "../services/location-proposals";
+import literatureProposals from "../services/literature-proposals";
+import printedProposals from "../services/printed-proposals";
 import Typeahead from "./Typeahead";
 import TypeaheadCollapseInput from "./TypeaheadCollapseInput";
 import HelpLabel from "./HelpLabel";
@@ -340,7 +342,9 @@ export default {
     return {
       month: 0,
       states,
-      locationProposals
+      locationProposals,
+      literatureProposals,
+      printedProposals
     };
   },
   computed: {
