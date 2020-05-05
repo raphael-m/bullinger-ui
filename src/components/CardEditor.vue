@@ -5,7 +5,10 @@
         <div class="col-sm-4" v-viewer="'date'">
           <div style="position:relative;">
             <h4>{{ $t("editor.date.title") }}</h4>
-            <div style="position:absolute; right:0; top:0;">
+            <div
+              style="position:absolute; right:-5px; top:-6px; padding: 6px 11px 9px 11px;"
+              :style="c.is_linked ? 'background: #FAFAFA' : ''"
+            >
               <help-label
                 :for="'is_linked_card'"
                 :text="'Verweiskarte'"
@@ -21,7 +24,11 @@
               />
             </div>
           </div>
-          <div class="row narrow" v-show="c.is_linked">
+          <div
+            class="row narrow"
+            v-show="c.is_linked"
+            :style="c.is_linked ? 'background: #FAFAFA;' : ''"
+          >
             <div class="col-sm-4 form-group">
               <help-label
                 for="year_linked"
