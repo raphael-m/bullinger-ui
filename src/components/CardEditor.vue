@@ -262,6 +262,45 @@
             <collapse-input id="copy_remarks" v-model="c.copy.remarks" />
           </div>
         </div>
+        <div class="col-sm-4" v-viewer="'copy'">
+          <h4>{{ $t("editor.copy.title") }} B</h4>
+          <div class="form-group">
+            <help-label
+              for="copy_b_location"
+              :text="$t('editor.copy.location') + ' B'"
+              :tip="$t('editor.copy.location_tip')"
+            />
+            <typeahead
+              v-model="c.copy_b.location"
+              id="copy_b_location"
+              :proposals="locationProposals.copy"
+              :maxMatches="50"
+              :minMatchingChars="0"
+              :hideEqual="true"
+            />
+          </div>
+          <div class="form-group">
+            <help-label
+              for="copy_b_signature"
+              :text="$t('editor.copy.signature') + ' B'"
+              :tip="$t('editor.copy.signature_tip')"
+            />
+            <input
+              id="copy_b_signature"
+              v-model="c.copy_b.signature"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <help-label
+              for="copy_b_remarks"
+              :text="$t('editor.copy.remarks') + ' B'"
+              :tip="$t('editor.copy.remarks_tip')"
+            />
+            <collapse-input id="copy_b_remarks" v-model="c.copy_b.remarks" />
+          </div>
+        </div>
       </div>
       <!-- <h4>{{$t('editor.contents.title')}}</h4> -->
       <div class="row">

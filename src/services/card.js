@@ -12,6 +12,8 @@ export default {
         result.data.card.is_linked = false;
       if (typeof result.data.card.date_linked === "undefined")
         result.data.card.date_linked = {};
+      if (typeof result.data.card.copy_b === "undefined")
+        result.data.card.copy_b = {};
 
       return result.data;
     } catch (e) {
