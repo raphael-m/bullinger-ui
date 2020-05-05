@@ -23,7 +23,7 @@ export default {
       year_b: "Jahr B",
       year_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweite Jahreszahl (vierstellig) ohne Klammern",
-      year_linked: "Jahr V",
+      year_linked: "Jahr Verw.",
       year_linked_tip:
         "Jahreszahl der Verweiskarte, falls vorhanden (vierstellig)",
       month: "Monat",
@@ -31,14 +31,14 @@ export default {
       month_b: "Monat B",
       month_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweiter Monatsname",
-      month_linked: "Monat V",
+      month_linked: "Monat Verw.",
       month_linked_tip: "Monatsname der Verweiskarte, falls vorhanden",
       day: "Tag",
       day_tip: "Datumsangabe",
       day_b: "Tag B",
       day_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweite Datumsangabe",
-      day_linked: "Tag V",
+      day_linked: "Tag Verw.",
       day_linked_tip: "Datumsangabe der Verweiskarte, falls vorhanden",
       remarks: "Bemerkung (Datum)",
       remarks_tip:
