@@ -1,52 +1,63 @@
 {
-    "id": 6,
-    "state": "open",
-    "reviews": 0,
-    "card_path": "/card-example.png",
-    "card": {
-        "date": {
-            "year": 1547,
-            "month": 10,
-            "day": 4,
-            "year_b": null,
-            "month_b": null,
-            "day_b": null,
-            "remarks": ""
-        },
-        "sender": {
-            "firstname": "Ambrosius",
-            "lastname": "Blarer",
-            "location": "Konstanz",
-            "remarks": "",
-            "verified": false
-        },
-        "receiver": {
-            "firstname": "Heinrich",
-            "lastname": "Bullinger",
-            "location": "Zürich",
-            "remarks": "",
-            "verified": false
-        },
-        "autograph": {
-            "location": "Zürich",
-            "signature": "ff f gry. fjs",
-            "remarks": ""
-        },
-        "copy": {
-            "location": "Zürich StA",
-            "signature": "",
-            "remarks": ""
-        },
-        "language": "Latein",
-        "literature": "",
-        "printed": "",
-        "first_sentence": "Nudius tertius ad Vadianua nostrum tuas dedi cum oratione illa apologicas",
-        "remarks": ""
+  "id": 6,
+  "state": "open",
+  "reviews": 0,
+  "card_path": "/card-example.png",
+  "card": {
+    "date": {
+      "year": 1547,
+      "month": 10,
+      "day": 4,
+      "year_b": null,
+      "month_b": null,
+      "day_b": null,
+      "remarks": ""
     },
-    "navigation": {
-        "next": "/assignment/7",
-        "next_unedited": "/assignment/7",
-        "previous": "/assignment/5",
-        "previous_unedited": "/assignment/5"
-    }
+    "is_linked": false,
+    "date_linked": {
+      "year": 1548,
+      "month": 9,
+      "day": 20
+    },
+    "sender": {
+      "firstname": "Ambrosius",
+      "lastname": "Blarer",
+      "location": "Konstanz",
+      "remarks": "",
+      "verified": false
+    },
+    "receiver": {
+      "firstname": "Heinrich",
+      "lastname": "Bullinger",
+      "location": "Zürich",
+      "remarks": "",
+      "verified": false
+    },
+    "autograph": {
+      "location": "Zürich",
+      "signature": "ff f gry. fjs",
+      "remarks": ""
+    },
+    "copy": {
+      "location": "Zürich StA",
+      "signature": "",
+      "remarks": ""
+    },
+    "copy_b": {
+      "location": "Copy B",
+      "signature": "Signature B",
+      "remarks": "Remarks Copy B"
+    },
+    "language": "Latein",
+    "literature": "",
+    "printed": "",
+    "first_sentence": "Nudius tertius ad Vadianua nostrum tuas dedi cum oratione illa apologicas",
+    "remarks": ""
+  },
+  "navigation": {
+    "next": "/assignment/7",
+    "next_unedited": "/assignment/7",
+    "previous": "/assignment/5",
+    "previous_unedited": "/assignment/5"
+  }
 }
