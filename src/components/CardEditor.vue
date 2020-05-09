@@ -12,7 +12,7 @@
               <help-label
                 :for="'is_linked_card'"
                 :text="'Verweiskarte'"
-                :tip="'Aktivieren Sie diese Option, wenn es sich um eine Karteikarte handelt, welche auf eine andere Karte verweist. Wenn diese Option aktiviert wird, kann ein zusätzliches Datum für die Karte eingetragen werden, auf die die aktuelle Karte verweist.'"
+                :tip="'Aktivieren Sie diese Option, wenn die aktuelle Karteikarte auf eine andere Karte verweist. Mit Aktivierung dieser Option erscheint eine weitere Zeile, in die Sie bitte das Datum eintragen, auf welches die aktuelle Karte verweist.'"
                 style="display:inline-block;"
               />
               <input
@@ -263,12 +263,12 @@
           </div>
         </div>
         <div class="col-sm-4" v-viewer="'copy'">
-          <h4>{{ $t("editor.copy.title") }} B</h4>
+          <h4>{{ $t("editor.copy_b.title") }}</h4>
           <div class="form-group">
             <help-label
               for="copy_b_location"
-              :text="$t('editor.copy.location') + ' B'"
-              :tip="$t('editor.copy.location_tip')"
+              :text="$t('editor.copy_b.location')"
+              :tip="$t('editor.copy_b.location_tip')"
             />
             <typeahead
               v-model="c.copy_b.location"
@@ -282,8 +282,8 @@
           <div class="form-group">
             <help-label
               for="copy_b_signature"
-              :text="$t('editor.copy.signature') + ' B'"
-              :tip="$t('editor.copy.signature_tip')"
+              :text="$t('editor.copy_b.signature')"
+              :tip="$t('editor.copy_b.signature_tip')"
             />
             <input
               id="copy_b_signature"
@@ -295,8 +295,8 @@
           <div class="form-group">
             <help-label
               for="copy_b_remarks"
-              :text="$t('editor.copy.remarks') + ' B'"
-              :tip="$t('editor.copy.remarks_tip')"
+              :text="$t('editor.copy_b.remarks')"
+              :tip="$t('editor.copy_b.remarks_tip')"
             />
             <collapse-input id="copy_b_remarks" v-model="c.copy_b.remarks" />
           </div>

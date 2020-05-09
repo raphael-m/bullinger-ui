@@ -24,22 +24,21 @@ export default {
       year_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweite Jahreszahl (vierstellig) ohne Klammern",
       year_linked: "Jahr Verw.",
-      year_linked_tip:
-        "Jahreszahl der Verweiskarte, falls vorhanden (vierstellig)",
+      year_linked_tip: "Jahreszahl, auf die verwiesen wird (vierstellig)",
       month: "Monat",
       month_tip: "Monatsname",
       month_b: "Monat B",
       month_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweiter Monatsname",
       month_linked: "Monat Verw.",
-      month_linked_tip: "Monatsname der Verweiskarte, falls vorhanden",
+      month_linked_tip: "Monatsname, auf den verwiesen wird",
       day: "Tag",
       day_tip: "Datumsangabe",
       day_b: "Tag B",
       day_b_tip:
         "Sofern Anfangs- und Enddaten angegeben sind: Zweite Datumsangabe",
       day_linked: "Tag Verw.",
-      day_linked_tip: "Datumsangabe der Verweiskarte, falls vorhanden",
+      day_linked_tip: "Datum, auf das verwiesen wird",
       remarks: "Bemerkung (Datum)",
       remarks_tip:
         'Steht das Datum auf der Karteikarte in Klammern oder ist mit einer lat. Abkürzung wie "s.d." oder "s.a." versehen, tragen Sie hier "Datum unsicher" ein',
@@ -101,7 +100,17 @@ export default {
         "Buchstabenfolgen sind mit Leerschlägen zu trennen, Zahlen mit Kommas (für Beispiele s. FAQ)",
       remarks: "Bemerkung (Kopie)",
       remarks_tip:
-        'Sind Sie unsicher, ob Sie die Angaben richtig entziffert haben, tragen Sie hier bitte die entsprechende Bemerkung ein und setzen den Status auf "Unklar"',
+        "Zusätzliche Informationen zu Standort und Signatur tragen Sie bitte hier ein",
+    },
+    copy_b: {
+      title: "Kopie B",
+      location: "Standort Kopie B",
+      location_tip: "Zweiter Standort von Kopien (ohne Komma)",
+      signature: "Signatur Kopie B",
+      signature_tip: "Signatur des zweiten Standorts von Kopien",
+      remarks: "Bemerkung (Kopie) B",
+      remarks_tip:
+        "Zusätzliche Informationen zum Standort B oder weitere Standorte tragen Sie bitte hier ein.",
     },
     contents: {
       title: "Inhalt",
