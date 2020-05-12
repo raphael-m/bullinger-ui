@@ -174,7 +174,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$refs);
     this.$_ro = new ResizeObserver(() => {
       this.resizeList(this.$refs.collapseInput.$refs.input.$el);
     });
