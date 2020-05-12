@@ -1,5 +1,5 @@
 <template>
-  <vue-bootstrap-typeahead
+  <vue-bootstrap-typeahead-collapse-input
     ref="typeahead"
     v-model="internalValue"
     :data="proposals"
@@ -10,18 +10,14 @@
     :maxMatches="maxMatches"
     type="text"
     :hideEqual="hideEqual"
-  >
-  </vue-bootstrap-typeahead>
+  ></vue-bootstrap-typeahead-collapse-input>
 </template>
 
 <script>
-import VueBootstrapTypeahead from "./vue-bootstrap-typeahead/VueBootstrapTypeahead";
+import VueBootstrapTypeaheadCollapseInput from "./vue-bootstrap-typeahead-extensions/VueBootstrapTypeaheadCollapseInput";
 
-/**
-A component which allows selecting / entering recievers and senders
- */
 export default {
-  name: "Typeahead",
+  name: "TypeaheadGeneral",
   props: {
     value: { type: String, default: "" },
     proposals: { type: Array, default: () => [] },
@@ -59,7 +55,7 @@ export default {
     }
   },
   components: {
-    VueBootstrapTypeahead
+    VueBootstrapTypeaheadCollapseInput
   }
 };
 </script>

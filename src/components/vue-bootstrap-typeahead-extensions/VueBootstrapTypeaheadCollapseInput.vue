@@ -6,16 +6,17 @@
           <span class="input-group-text">{{ prepend }}</span>
         </slot>
       </div>
-      <input
-        ref="input"
+      <collapse-input
+        :id="id"
+        ref="collapseInput"
         :type="type"
-        :class="`form-control ${inputClass}`"
+        :class="` ${inputClass}`"
         :placeholder="placeholder"
         :aria-label="placeholder"
         :value="inputValue"
         @focus="isFocused = true"
         @blur="handleBlur"
-        @input="handleInput($event.target.value)"
+        @input="handleInput"
         autocomplete="off"
       />
       <div v-if="$slots.append || append" class="input-group-append">
@@ -54,12 +55,14 @@
 </template>
 
 <script>
-import VueBootstrapTypeaheadList from "./VueBootstrapTypeaheadList.vue";
+import VueBootstrapTypeaheadList from "../vue-bootstrap-typeahead/VueBootstrapTypeaheadList.vue";
 import ResizeObserver from "resize-observer-polyfill";
+import CollapseInput from "../CollapseInput";
 export default {
-  name: "VueBootstrapTypehead",
+  name: "VueBootstrapTypeheadCollapseInput",
   components: {
-    VueBootstrapTypeaheadList
+    VueBootstrapTypeaheadList,
+    CollapseInput
   },
   props: {
     size: {
@@ -105,11 +108,14 @@ export default {
     hideEqual: {
       type: Boolean,
       default: false
+    },
+    id: {
+      type: String
     }
   },
   computed: {
     sizeClasses() {
-      return this.size ? `input-group input-group-${this.size}` : "input-group";
+      return ""; // this.size ? `input-group input-group-${this.size}` : "input-group";
     },
     formattedData() {
       if (!(this.data instanceof Array)) {
@@ -143,7 +149,7 @@ export default {
       }
       this.inputValue = evt.text;
       this.$emit("hit", evt.data);
-      this.$refs.input.blur();
+      this.$refs.collapseInput.$refs.input.$el.blur();
       this.isFocused = false;
     },
     handleBlur(evt) {
@@ -168,10 +174,11 @@ export default {
     };
   },
   mounted() {
+    console.log(this.$refs);
     this.$_ro = new ResizeObserver(() => {
-      this.resizeList(this.$refs.input);
+      this.resizeList(this.$refs.collapseInput.$refs.input.$el);
     });
-    this.$_ro.observe(this.$refs.input);
+    this.$_ro.observe(this.$refs.collapseInput.$refs.input.$el);
     this.$_ro.observe(this.$refs.list.$el);
   },
   beforeDestroy() {
