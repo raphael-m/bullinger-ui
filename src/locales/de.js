@@ -100,7 +100,7 @@ export default {
         "Buchstabenfolgen sind mit Leerschlägen zu trennen, Zahlen mit Kommas (für Beispiele s. FAQ)",
       remarks: "Bemerkung (Kopie)",
       remarks_tip:
-        "Zusätzliche Informationen zu Standort und Signatur tragen Sie bitte hier ein",
+        "Zusätzliche Informationen zum ersten Standort tragen Sie bitte hier ein",
     },
     copy_b: {
       title: "Kopie B",
@@ -110,7 +110,7 @@ export default {
       signature_tip: "Signatur des zweiten Standorts von Kopien",
       remarks: "Bemerkung (Kopie) B",
       remarks_tip:
-        "Zusätzliche Informationen zum Standort B oder weitere Standorte tragen Sie bitte hier ein.",
+        "Zusätzliche Informationen zum zweiten Standort oder weitere Standorte tragen Sie bitte hier ein",
     },
     contents: {
       title: "Inhalt",
