@@ -10,4 +10,5 @@ export default [
   "Wotschke",
   "gemäss alph. Schiess",
   "Kessler, Sabbata",
+  "Niehaus",
 ];
