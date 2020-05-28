@@ -1565,7 +1565,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var rege
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ([\"Benrath\", \"Bouvier\", \"Ferd. Meyer, Die evangelische Gemeinde in Locarno\", \"A. Mühling, HB's europ. Kirchenpolitik \", \"E. Bähler, Dekan J. Haller, in: NBT\", \"JB für Schweiz. Gesch., 31, 1906\", \"M. Steinmann, Oporinus\", \"W. Köhler, Bibl. Brentiana\", \"Wotschke\", \"gemäss alph. Schiess\", \"Kessler, Sabbata\"]);\n\n//# sourceURL=webpack:///./src/services/literature-proposals.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ([\"Benrath\", \"Bouvier\", \"Ferd. Meyer, Die evangelische Gemeinde in Locarno\", \"A. Mühling, HB's europ. Kirchenpolitik \", \"E. Bähler, Dekan J. Haller, in: NBT\", \"JB für Schweiz. Gesch., 31, 1906\", \"M. Steinmann, Oporinus\", \"W. Köhler, Bibl. Brentiana\", \"Wotschke\", \"gemäss alph. Schiess\", \"Kessler, Sabbata\", \"Niehaus\"]);\n\n//# sourceURL=webpack:///./src/services/literature-proposals.js?");
 
 /***/ }),
 
