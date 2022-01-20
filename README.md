@@ -1,4 +1,4 @@
-# bullinger
+# This project is archived - the new repository is located at: https://github.com/bullinger-digital/bullinger-digital-frontend
 
 ## Project setup
 ```
